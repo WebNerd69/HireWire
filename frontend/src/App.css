@@ -3,8 +3,29 @@
   font-weight: 500;
   font-style: normal;
 }
+.poppins-semi-bold {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
 .poppins-light-italic {
   font-family: "Poppins", sans-serif;
   font-weight: 300;
   font-style: italic;
+}
+.poppins-light {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.sarina-regular {
+  font-family: "Sarina", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+#jobcard{
+  box-shadow: -3px 0px 0px 0px #686df8;
 }

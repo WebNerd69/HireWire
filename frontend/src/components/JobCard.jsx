@@ -1,0 +1,32 @@
+import React from 'react'
+import "../App.css"
+const JobCard = ({company , type , time , title , salary , country , city}) => {
+  return (
+    <div className='w-[90%] min-h-[240px] bg-white rounded-3xl overflow-hidden relative flex justify-center' id='jobcard'>
+          {/* <div className='h-full w-2 absolute left-0 top-0 bg-red-400'></div> */}
+          <div className='flex flex-col gap-y-3 relative w-full px-20 py-7'>
+               <div className='flex w-full gap-x-16 poppins-light text-gray-400 text-sm'>
+                    <p>{company}</p>
+                    <p>{type}</p>
+                    <p>{time}</p>
+               </div>
+               
+               <div className='w-[90%] flex justify-between flex-col'> 
+                    <p className='poppins-medium text-3xl'>{title}</p>             
+                    <p className='poppins-light-italic text-gray-400'>{salary}</p>
+               </div>
+
+               <div className='w-[100%] h-[33%] bg-[#686df82e] absolute -left-0 -bottom-0 flex justify-between items-center px-10 border-t-2 border-[#686df85f]'>
+                   <div className='text-lg flex gap-x-5 poppins-medium text-[#686df8]'>
+                    <p>{country}</p>
+                    <p>|</p>
+                    <p>{city}</p>
+                    </div> 
+                   <button className='px-5 py-3 bg-white rounded-full poppins-medium border-2 border-white hover:border-[#686df8]'>Apply now</button>
+               </div>
+          </div>
+    </div>
+  )
+}
+
+export default JobCard
