@@ -30,11 +30,11 @@ const Navbar = ({ scrollY }) => {
       animate={isHidden ? "hidden" : "visible"}
       variants={{
         hidden: {
-          y: "-90%",
+          y: "-60%",
           scale: "80%",
         },
         visible: {
-          y: "0%",
+          y: "20%",
           scale: "100%",
         }
       }}

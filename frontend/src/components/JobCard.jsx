@@ -18,6 +18,7 @@ const JobCard = ({company , type , time , title , salary , country , city}) => {
 
                <div className='w-[100%] h-[33%] bg-[#686df82e] absolute -left-0 -bottom-0 flex justify-between items-center px-10 border-t-2 border-[#686df85f]'>
                    <div className='text-lg flex gap-x-5 poppins-medium text-[#686df8]'>
+                    <i className="ri-map-pin-line"></i>
                     <p>{country}</p>
                     <p>|</p>
                     <p>{city}</p>

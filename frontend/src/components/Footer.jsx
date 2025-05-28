@@ -10,13 +10,13 @@ const Footer = () => {
           <div className='w-[30%] h-full flex items-center gap-x-20 justify-evenly'>
                <div className='text-gray-500 poppins-medium flex flex-col gap-y-5'>
                     <p>Contact The developer</p>
-                    <p className='hover:text-slate-900 cursor-pointer'>Instagram</p>
-                    <p className='hover:text-slate-900 cursor-pointer'>Linkedin</p>
+                    <a href='https://www.instagram.com/rudra.csv/' target='_blank' className='hover:text-slate-900 cursor-pointer'>Instagram</a>
+                    <a href='https://www.linkedin.com/in/rudra-pratap-roy-718393248/' target='_blank' className='hover:text-slate-900 cursor-pointer'>Linkedin</a>
                </div>
                <div className='text-gray-500 poppins-medium flex flex-col gap-y-5'>
                     <p>Documentation</p>
-                    <p className='hover:text-slate-900 cursor-pointer'>GitHub</p>
-                    <p className='hover:text-slate-900 cursor-pointer'>About</p>
+                    <a href='https://github.com/WebNerd69' target='_blank' className='hover:text-slate-900 cursor-pointer'>GitHub</a>
+                    <a href="https://github.com/WebNerd69/HireWire" target='_blank' className='hover:text-slate-900 cursor-pointer'>About</a>
                </div>
           </div>
           </div>

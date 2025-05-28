@@ -12,9 +12,13 @@ const Hero = () => {
           <div className='text-center text-sm text-slate-600 poppins-light-italic cursor-default'>
                <p>HireWire is a platform that helps you find your dream job without hastle.</p>
           </div>
-          <div className="search w-[800px] rounded-full border-2 border-[#686DF8] px-3 py-2 flex justify-between items-center mt-5 shadow-lg">
-               <input type="text" placeholder='Search for a job' className='w-[600px] px-5 text-lg outline-none'/>
-               <button className='bg-[#686DF8] text-white px-3 py-3 rounded-full'><img src={searchIcon} alt="search" className='w-5 h-5'/></button>
+          <div className="search w-[800px] rounded-full border-2 border-[#686DF8] px-3 py-2 flex justify-between items-center mt-5 shadow-lg poppins-medium">
+               <div className='flex gap-x-5 items-center'>
+                    <button className='bg-[#686DF8] text-white px-3 py-3 rounded-full'><img src={searchIcon} alt="search" className='w-5 h-5'/></button>
+                    <input type="text" placeholder='Search for a job' className='w-[600px] px-5 text-lg outline-none'/>
+               </div>
+               <div className='w-[20%] bg-[#989bf93d] text-[#686df8] px-3 py-3 rounded-full text-center '><i className="ri-map-pin-line"></i> Location</div>
+               
           </div>
      </div>
      </div>

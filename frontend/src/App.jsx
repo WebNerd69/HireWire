@@ -10,9 +10,10 @@ import Profile from './pages/Profile'
 import Lenis from 'lenis'
 import { useEffect } from 'react'
 import Footer from './components/Footer'
+import Login from './pages/Login'
 const App = () => {
 
-  const {scrollY }= useScroll()
+  const { scrollY } = useScroll()
 
   useEffect(() => {
     // Initialize Lenis
@@ -40,16 +41,17 @@ const App = () => {
     };
   }, []);
   return (
-    <div className='overflow-x-hidden min-w-[100vw] min-h-[200vh] pt-7'>
-      <Navbar scrollY={scrollY}/>
+    <div className='overflow-x-hidden min-w-[100vw] '>
+      <Navbar scrollY={scrollY} />
+      {/* <Login/> */}
       <Routes>
-          <Route path="/" element={<Home/>}/>
-          <Route path="/hiring" element={<Hiring/>}/>
-          <Route path="/applied" element={<AppliedJobs/>}/>
-          <Route path="/applications" element={<Applications/>}/>
-          <Route path="/profile" element={<Profile/>}/>
-        </Routes>
-      <Footer/>
+        <Route path="/" element={<Home />} />
+        <Route path="/hiring" element={<Hiring />} />
+        <Route path="/applied" element={<AppliedJobs />} />
+        <Route path="/applications" element={<Applications />} />
+        <Route path="/profile" element={<Profile />} />
+      </Routes>
+      <Footer />
     </div>
   )
 }

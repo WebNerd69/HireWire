@@ -32,7 +32,7 @@ const RecomendedSection = () => {
                     </div>
                </div>
                <div className='w-[100%] h-[80vh] flex justify-evenly items-center '>
-                    <div className='h-[90%] w-[25%] flex flex-col gap-y-5 overflow-scroll'>
+                    <div className='h-[90%] w-[25%] flex flex-col gap-y-5 overflow-hidden'>
                          <div className='bg-white rounded-xl min-h-[70px] flex justify-between items-center px-5 shadow-md hover:cursor-pointer sticky top-0'>
                               <p className='poppins-semi-bold text-2xl '>Job Categories</p>
                          </div>
@@ -40,13 +40,12 @@ const RecomendedSection = () => {
                               return (<CategoryItem key={index} type={value.type} num={value.num} />)
                          })}
                     </div>
-                    <div className='h-[90%] w-[55%] flex flex-col gap-y-5 overflow-y-hidden items-end'>
+                    <div className='h-[90%] w-[55%] flex flex-col gap-y-5 overflow-auto items-end px-10'>
                          {jobs.map((value,index)=>{
                               return(
                                    <JobCard company={value.company} type={value.type} time={value.time} title={value.title} salary={value.salary} country={value.country} city={value.city} key={index}/>
                               )
                          })}
-                         
                     </div>
                </div>
 

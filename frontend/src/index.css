@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-::-webkit-scrollbar{
+body::-webkit-scrollbar{
   display: none;
+}
+::-webkit-scrollbar-thumb{
+  background-color: #686df8;
 }
