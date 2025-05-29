@@ -56,17 +56,12 @@ const Navbar = ({ scrollY }) => {
           className={({ isActive }) => (isActive ? "sm:px-7 sm:py-2 px-5 py-2 rounded-full bg-[#686df8] transition-all duration-300 ease-in-out text-white" : "sm:px-7 sm:py-2 px-5 py-2 rounded-full transition-all duration-300 ease-in-out")} onClick={()=>setProfileMenuIsOpen(false)}>
           Applications
         </NavLink>
-        <button
+        <NavLink to="/profile"
           className= "sm:px-3 sm:py-3 px-5 py-5 rounded-full transition-all duration-300 ease-in-out bg-[#686df8]"
-          onClick={toggleProfileMenu}
           >
           <img src={profileIcon} alt="profile" className="w-5 h-5" />
-        </button>
-      {profileMenuIsOpen&&(<div className="absolute w-[100px] h-[110px] -right-24 flex flex-col justify-evenly">
-        <NavLink to='/profile' className="text-gray-500 poppins-medium text-sm hover:text-slate-900" onClick={()=>setProfileMenuIsOpen(false)}>Profile</NavLink>
-        <NavLink to='/resume' className="text-gray-500 poppins-medium text-sm hover:text-slate-900 pl-4" onClick={()=>setProfileMenuIsOpen(false)}>Resume</NavLink>
-        <p className="text-red-400 poppins-medium text-sm hover:text-red-500">Log out</p>
-      </div>)}
+        </NavLink>
+      
       </nav>
     </motion.div>
   )

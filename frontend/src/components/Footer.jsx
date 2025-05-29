@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 const Footer = () => {
   return (
@@ -7,7 +8,7 @@ const Footer = () => {
                <div className=' w-[40%]'><p className='poppins-medium text-4xl'>HireWire made landing your <span className='bg-[#686df8] px-3 py-1 text-white'>dream job</span> a breeze.</p>
                <p className='text-gray-300 text-sm poppins-light-italic absolute pt-5'>Tere yar ka koi compitition hi nahi😎</p></div>
                
-          <div className='w-[30%] h-full flex items-center gap-x-20 justify-evenly'>
+          <div className='w-[40%] h-full flex items-center gap-x-20 justify-evenly'>
                <div className='text-gray-500 poppins-medium flex flex-col gap-y-5'>
                     <p>Contact The developer</p>
                     <a href='https://www.instagram.com/rudra.csv/' target='_blank' className='hover:text-slate-900 cursor-pointer'>Instagram</a>
@@ -17,6 +18,11 @@ const Footer = () => {
                     <p>Documentation</p>
                     <a href='https://github.com/WebNerd69' target='_blank' className='hover:text-slate-900 cursor-pointer'>GitHub</a>
                     <a href="https://github.com/WebNerd69/HireWire" target='_blank' className='hover:text-slate-900 cursor-pointer'>About</a>
+               </div>
+               <div className='text-gray-500 poppins-medium flex flex-col gap-y-5'>
+                    <p>Become a hiring partner</p>
+                    <NavLink to="/partner-login"  className='hover:text-slate-900 cursor-pointer'>Create job</NavLink>
+                    <a href="https://github.com/WebNerd69/HireWire" target='_blank' className='hover:text-slate-900 cursor-pointer'>Documentaion</a>
                </div>
           </div>
           </div>
