@@ -9,17 +9,17 @@ const Footer = () => {
                <p className='text-gray-300 text-sm poppins-light-italic absolute pt-5'>Tere yar ka koi compitition hi nahi😎</p></div>
                
           <div className='w-[40%] h-full flex items-center gap-x-20 justify-evenly'>
-               <div className='text-gray-500 poppins-medium flex flex-col gap-y-5'>
+               <div className='text-gray-500 poppins-semi-bold flex flex-col gap-y-5'>
                     <p>Contact The developer</p>
                     <a href='https://www.instagram.com/rudra.csv/' target='_blank' className='hover:text-slate-900 cursor-pointer'>Instagram</a>
                     <a href='https://www.linkedin.com/in/rudra-pratap-roy-718393248/' target='_blank' className='hover:text-slate-900 cursor-pointer'>Linkedin</a>
                </div>
-               <div className='text-gray-500 poppins-medium flex flex-col gap-y-5'>
+               <div className='text-gray-500 poppins-semi-bold flex flex-col gap-y-5'>
                     <p>Documentation</p>
                     <a href='https://github.com/WebNerd69' target='_blank' className='hover:text-slate-900 cursor-pointer'>GitHub</a>
                     <a href="https://github.com/WebNerd69/HireWire" target='_blank' className='hover:text-slate-900 cursor-pointer'>About</a>
                </div>
-               <div className='text-gray-500 poppins-medium flex flex-col gap-y-5'>
+               <div className='text-gray-500 poppins-semi-bold flex flex-col gap-y-5'>
                     <p>Become a hiring partner</p>
                     <NavLink to="/partner-login"  className='hover:text-slate-900 cursor-pointer'>Create job</NavLink>
                     <a href="https://github.com/WebNerd69/HireWire" target='_blank' className='hover:text-slate-900 cursor-pointer'>Documentaion</a>
