@@ -11,7 +11,7 @@ const AppliedJobs = () => {
 ]
   return (
     <div className='w-full flex flex-col gap-y-10 items-center px-10 py-20 relative'>
-      <div className='fixed sarina-regular text-[#686df844] text-[200vh] left-0 -z-10 blur-xl -top-[80vh]'>h</div>
+      {/* <div className='fixed sarina-regular text-[#686df844] text-[200vh] left-0 -z-10 blur-xl -top-[80vh]'>h</div> */}
       <div className='poppins-semi-bold text-6xl h-[20vh] flex items-center justify-center tracking-wide'>Your Job <span className='text-white bg-[#686df8] px-2 py-3'>Applications</span></div>
       {appliedJobs.map((job, index) => (
       <AppliedJobCard key={index} {...job} />

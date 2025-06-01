@@ -8,7 +8,7 @@ const Profile = () => {
     <div className='w-screen min-h-screen '>
 
       {/* left section */}
-      <div className='w-screen h-[100vh] flex justify-between'>
+      <div className='w-screen min-h-[100vh] flex justify-between '>
         <div className='w-[5vw] h-full flex items-center flex-col py-10 gap-y-20'>
           <p className='sarina-regular text-3xl text-[#686df8]'>h</p>
           <p className='relative group cursor-pointer' onClick={()=>{setShow("profile")}}>

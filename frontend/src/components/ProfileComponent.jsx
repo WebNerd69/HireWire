@@ -36,7 +36,7 @@ const ProfileComponent = () => {
                </div>
 
                {/* info section */}
-               <div className='w-full h-[85%] poppins-medium px-10 flex flex-col gap-y-20 py-20 relative'>
+               <div className='w-full h-[85%] poppins-medium px-10 flex flex-col gap-y-10 py-20 relative'>
                     <div className='w-full flex items-center justify-between'>
                          <div className='px-5 py-5 border-2 w-[30%] relative rounded-lg'>
                               <p className='text-sm text-zinc-900 absolute -top-3 bg-gray-50 px-2'>First name</p>
