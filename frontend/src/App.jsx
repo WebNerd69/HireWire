@@ -12,6 +12,7 @@ import { useEffect } from 'react'
 import Footer from './components/Footer'
 import Login from './pages/Login'
 import PartnerLogin from './pages/PartnerLogin'
+import { ToastContainer } from 'react-toastify'
 const App = () => {
 
   const { scrollY } = useScroll()
@@ -44,6 +45,7 @@ const App = () => {
   return (
     <div className='overflow-x-hidden min-w-[100vw] '>
       <Navbar scrollY={scrollY} />
+      <ToastContainer/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />

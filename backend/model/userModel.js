@@ -4,13 +4,13 @@ const userSchema = new mongoose.Schema({
      name:{type:String,required:true},
      email:{type:String,required:true,unique:true},
      password:{type:String,required:true},
-     resume:{type:Object },
+     resume:{type:Object, default:null },
      appliedJobs:{type:Array,default:[]},
-     phone:{type:String},
-     address:{type:String},
-     country:{type:String},
-     state:{type:String},
-     district:{type:String},
+     phone:{type:String, default:null},
+     address:{type:String, default:null},
+     country:{type:String, default:null},
+     state:{type:String, default:null},
+     district:{type:String, default:null},
      
      
 },{minimize:false})

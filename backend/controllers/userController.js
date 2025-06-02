@@ -4,8 +4,8 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 
 // create token
-const createToken = (id) => {
-     return jwt.sign({ id }, process.env.JWT_SECRET);
+const createToken = (payload) => {
+     return jwt.sign({ payload }, process.env.JWT_SECRET);
 };
 
 // user login route
@@ -22,10 +22,13 @@ const userLogin = async (req, res) => {
           }
           const isMatch = await bcrypt.compare(password, user.password);
           if (isMatch) {
+               const { password, ...userData } = user.toObject()
                const token = createToken(user._id)
                res.json({
                     success: true,
-                    token
+                    token,
+                    type: "user",
+                    userData
                })
           } else {
                res.json({ success: false, message: "Incorrect credentials" })
@@ -35,7 +38,7 @@ const userLogin = async (req, res) => {
           res.json({
                success: false,
                message: error.message
-          }); 
+          });
      }
 };
 
@@ -70,7 +73,17 @@ const userRegister = async (req, res) => {
           });
           const user = await newUser.save();
           const token = createToken(user._id);
-          res.json({ success: true, token });
+          const userData = (()=>{
+               const {password , ...userData} = user.toObject();
+               return userData
+          })()
+          res.json(
+               {
+                    success: true,
+                    type: "user",
+                    token,
+                    userData
+               });
      } catch (error) {
           console.log(error);
           res.json({
@@ -155,6 +168,6 @@ const getUser = async (req, res) => {
      }
 };
 
-export { updateUserInfo, updateUserResume,userLogin, userRegister, getUser };
+export { updateUserInfo, updateUserResume, userLogin, userRegister, getUser };
 
 
