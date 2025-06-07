@@ -5,7 +5,7 @@ import axios from 'axios'
 import { toast } from 'react-toastify'
 const PartnerLogin = () => {
 
-  const {backendURL , setToken , setLoginStatus , setUserData , setUserType } = useContext(AppContext)
+  const {backendURL , setToken , setLoginStatus , setUserData , setUserType , navigate } = useContext(AppContext)
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -48,6 +48,7 @@ const PartnerLogin = () => {
         localStorage.setItem("userType", "partner");
   
         toast.success("Logged in successfully");
+        navigate("/")
       } else {
         toast.error(response.data.message || "Login failed");
       }
@@ -83,6 +84,7 @@ const PartnerLogin = () => {
   
         toast.success("Profile created successfully");
         toast.success("Logged in successfully");
+        navigate("/")
       } else {
         toast.error(response.data.message || "Registration failed");
       }

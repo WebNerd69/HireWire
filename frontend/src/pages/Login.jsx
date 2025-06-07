@@ -9,7 +9,7 @@ const Login = () => {
   const [name, setName] = useState('')
   const [isPasswordVisible, setIsPasswordVisible] = useState(false)
   const [currentState, setCurrentState] = useState('login')
-  const { backendURL, setToken, setLoginStatus, setUserData, setUserType} = useContext(AppContext)
+  const { backendURL, setToken, setLoginStatus, setUserData, setUserType , navigate} = useContext(AppContext)
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value)
@@ -40,6 +40,7 @@ const Login = () => {
         localStorage.setItem("loginStatus","true")
   
         toast.success("Logged in successfully");
+        navigate("/")
       } else {
         toast.error(response.data.message || "Login failed");
       }
@@ -72,6 +73,7 @@ const Login = () => {
   
         toast.success("Profile created successfully");
         toast.success("Logged in successfully");
+        navigate("/")
       } else {
         toast.error(response.data.message || "Signup failed");
       }
