@@ -1,5 +1,3 @@
-Here's a beautifully structured and detailed `README.md` for your job portal project:
-
 ---
 
 # 💼 HireWire - Landing your Dream job with ease using HireWire
