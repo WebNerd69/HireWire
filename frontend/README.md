@@ -28,30 +28,42 @@ hireWire is a full-featured job portal designed to simplify job discovery and hi
 * Update application statuses
 * Auto-remove applicants when cancelled
 
-### 🛠️ Core Technologies
+---
 
-* **Frontend**: React.js, TailwindCSS, Axios, React Router
-* **Backend**: Node.js, Express.js, MongoDB, JWT, Bcrypt
-* **Authentication**: Secure login/signup using JWT tokens
-* **State Management**: React Context API
+## 🚀 Tech Stack
+
+| Layer                     | Technology                                      |
+| ------------------------- | ----------------------------------------------- |
+| Frontend                  | React / Tailwind CSS / Axios                    |
+| Backend                   | Node.js / Express                               |
+| Database                  | MongoDB (NoSQL)                                 |
+| Authentication (optional) | JWT / OAuth                                     |
+| Deployment                | Vercel + MongoDB Atlas                          |
 
 ---
 
-## 🧭 Project Structure
+## 🏗️ Project Structure
 
 ```
-├── frontend
-│   ├── public
-│   └── src
-│       ├── components
-│       ├── pages
-│       ├── assets
-│       └── context
-├── backend
-│   ├── controllers
-│   ├── models
-│   ├── routes
-│   └── config
+/ frontend
+  ├── public
+  ├── src
+      ├── components
+      ├── pages
+      ├── services (API calls)
+      └── styles
+/ backend
+  ├── models
+  ├── routes
+  ├── controllers
+  ├── middlewares
+  └── utils
+/ database
+  ├── collections
+      ├── jobs
+      ├── user
+      ├── jobapplications
+      └── partners
 ```
 
 ---

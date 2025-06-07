@@ -17,12 +17,12 @@ const Footer = () => {
                <div className='text-gray-500 poppins-semi-bold flex flex-col gap-y-5'>
                     <p>Documentation</p>
                     <a href='https://github.com/WebNerd69' target='_blank' className='hover:text-slate-900 cursor-pointer'>GitHub</a>
-                    <a href="https://github.com/WebNerd69/HireWire" target='_blank' className='hover:text-slate-900 cursor-pointer'>About</a>
+                    <a href="https://github.com/WebNerd69/HireWire/blob/main/README.md#-special-instructions" target='_blank' className='hover:text-slate-900 cursor-pointer'>About</a>
                </div>
                <div className='text-gray-500 poppins-semi-bold flex flex-col gap-y-5'>
                     <p>Become a hiring partner</p>
                     <NavLink to="/partner-login"  className='hover:text-slate-900 cursor-pointer'>Create job</NavLink>
-                    <a href="https://github.com/WebNerd69/HireWire" target='_blank' className='hover:text-slate-900 cursor-pointer'>Documentaion</a>
+                    <a href="https://github.com/WebNerd69/HireWire/blob/main/README.md#-special-instructions" target='_blank' className='hover:text-slate-900 cursor-pointer'>Documentaion</a>
                </div>
           </div>
           </div>
