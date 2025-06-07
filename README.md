@@ -1,34 +1,32 @@
-# 💼 HireWire — Job Portal System
-
-HireWire is a modern, scalable, and elegant **Job Portal System** designed to connect talented candidates with great job opportunities. Built with a focus on flexibility, performance, and minimalism, HireWire leverages **MongoDB** as its core NoSQL database to handle semi-structured data efficiently.
+Here's a beautifully structured and detailed `README.md` for your job portal project:
 
 ---
 
-## 🌟 Features
+# 💼 HireWire - Landing your Dream job with ease using HireWire
 
-✅ **Elegant & Minimal UI**
-Clean white background, vibrant primary color (#686df8), and intuitive layouts that focus on user experience.
+Welcome to **HireWire**, a seamless platform that connects job seekers with employers through an intuitive and modern interface. Whether you're an individual seeking opportunities or a company wanting to post jobs, JobSphere is built to support both experiences with ease.
 
-✅ **Job Listings Management**
-Employers can post, edit, update, and close job listings with details like title, description, location, salary, and requirements.
+---
+## 🚀 Overview
+hireWire is a full-featured job portal designed to simplify job discovery and hiring. Whether you're a job seeker or a hiring partner, hireWire provides a smooth, intuitive interface that bridges the gap between talent and opportunity.
 
-✅ **Candidate Profiles & Resumes**
-Job seekers can create profiles, upload resumes, showcase their skills, and keep their experiences updated.
+## 🚀 Features
 
-✅ **Advanced Search**
-Powerful job and candidate search using MongoDB’s \$text, \$regex, \$or, filters, and sorting — find the right match fast.
+### 👤 For Job Seekers
 
-✅ **Application Tracking**
-Candidates can apply to jobs, and employers can track and filter applications seamlessly.
+* Create and manage a personal profile
+* Build and update resumes
+* Browse job listings
+* Apply for jobs with real-time status tracking
+* Cancel applications anytime
 
-✅ **Analytics & Insights**
-Gain insights into hiring trends, most in-demand skills, job distributions, and average salaries using MongoDB Aggregation Framework.
+### 🧑‍💼 For Partners (Employers)
 
-✅ **Authentication (Optional)**
-Separate logins for candidates and employers using JWT or session-based authentication with role-based access control.
-
-✅ **Responsive Design**
-Optimized for mobile and desktop for a consistent experience across devices.
+* Register as a partner
+* Post new job openings
+* Manage applicants
+* Update application statuses
+* Auto-remove applicants when cancelled
 
 ---
 
@@ -70,72 +68,93 @@ Optimized for mobile and desktop for a consistent experience across devices.
 
 ---
 
-## ⚙️ MongoDB Collections
+## 🧪 Getting Started
 
-* **jobs** → jobTitle, company, location, description, requirements, salary, status
-* **users** → name, email, phone, password, skills, education, experience, resume
-* **jobapplications** → jobId, candidateId, status, appliedDate
-* **partners** → ._id, name, companyName, email, password
+### ⚙️ Backend Setup
 
-Includes indexes on searchable fields (jobTitle, skills, location) for optimized performance.
+```bash
+git clone https://github.com/WebNerd69/HireWire
+cd hireWire
 
----
+cd backend
+npm install
+# Create a .env file with:
+# MONGO_URI=<your-mongo-uri>
+# JWT_SECRET=<your-secret-key>
+npm run dev
+```
 
-## 📈 Analytics Examples
+### 🎨 Frontend Setup
 
-* Number of jobs posted per industry
-* Top 10 most requested skills
-* Average salary by role
-* Monthly application trends
-
-Displayed beautifully in charts and graphs on the analytics dashboard.
-
----
-
-## 🛡️ Setup & Run
-
-1️⃣ Clone the repo:
-`git clone https://github.com/webnerd69/hirewire`
-
-2️⃣ Install dependencies (frontend & backend):
-`npm install`
-
-3️⃣ Configure `.env` with MongoDB URI and any API keys.
-
-4️⃣ Start backend server:
-`npm run dev`
-
-5️⃣ Start frontend:
-`npm run start`
+```bash
+cd frontend
+npm install
+# Create a .env file with:
+#VITE_BACKEND_URL ="http://localhost:5000"
+npm run dev
+```
 
 ---
 
-## 💡 Future Enhancements
+## 📂 Important Endpoints
 
-* Resume parsing and keyword extraction using AI
-* Recommendation engine for personalized job matches
-* Notification system (email or in-app)
-* Employer dashboard with performance metrics
-* Interview scheduling and tracking
+### Auth
 
----
+* `POST /api/user/register`
+* `POST /api/user/login`
+* `POST /api/partner/register`
+* `POST /api/partner/login`
 
-## 🌐 Live Demo
+### Jobs
 
-🚧 *Coming soon! Stay tuned.*
-
----
-
-## ✨ Credits
-
-Designed and developed with 💙 by a passionate team of developers. Special thanks to open-source tools and the developer community.
-
-If you love this project, don’t forget to ⭐️ star the repo and contribute!
+* `POST /api/job/` (Partner-only)
+* `GET /api/job/`
+* `PATCH /api/jobApplication/:id`
 
 ---
 
-## 📬 Contact
+## ✨ Special Instructions
 
-For questions, suggestions, or collaborations:
-📧 [rroy64330@gmail.com](mailto:rroy64330@gmail.com)
-🔗 [LinkedIn]((https://www.linkedin.com/in/rudra-pratap-roy-718393248/))
+### 👉 Becoming a Partner
+
+To register as a partner and start creating job listings:
+
+> Scroll to the **footer** on the landing page and click on the **“Create Jobs”** link to access the partner registration form.
+
+Once registered, you'll gain access to the job posting panel.
+
+---
+
+## 🧠 Smart UX Details
+
+* Button disabling during async requests
+* Context-aware job filters and dynamic category updates
+* Toast-based success/error feedbacks
+* Resume builder for applicants
+* Delete operations auto-update UI without reloading
+
+---
+
+
+
+## 📬 Contact Developer
+
+* 💼 [LinkedIn](https://www.linkedin.com/in/rudra-pratap-roy-718393248/)
+* 📧 Email: [rroy64330@example.com](mailto:rroy64330@example.com)
+
+---
+
+## ⭐ Support the Project
+If you find this project helpful:
+
+👉 **Star this repository**
+👉 **Share with friends and peers**
+👉 **Contribute if you’d like!**
+
+---
+
+## 💬 Credits
+
+Made with 💖 by **Rudra Pratap Roy**, student of IIT Madras & IIT Guwahati (Masai Credit-linked program), passionate about crafting impactful web applications.
+
+---
