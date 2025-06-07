@@ -18,7 +18,7 @@ const Footer = () => {
                          <div className='text-gray-500 poppins-semi-bold flex flex-col md:gap-y-5 gap-y-3'>
                               <p>Documentation</p>
                               <a href='https://github.com/WebNerd69' target='_blank' className='hover:text-slate-900 cursor-pointer'>GitHub</a>
-                              <a href="https://github.com/WebNerd69/HireWire/blob/main/README.md#-special-instructions" target='_blank' className='hover:text-slate-900 cursor-pointer'>About</a>
+                              <a href="https://github.com/WebNerd69/HireWire?tab=readme-ov-file#-hirewire---landing-your-dream-job-with-ease-using-hirewire" target='_blank' className='hover:text-slate-900 cursor-pointer'>About</a>
                          </div>
                          <div className='text-gray-500 poppins-semi-bold flex flex-col md:gap-y-5 gap-y-3'>
                               <p>Become a hiring partner</p>
