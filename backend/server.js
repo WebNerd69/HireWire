@@ -12,15 +12,14 @@ const port = process.env.PORT || 5000
 
 // middleware
 app.use(express.json())
-import cors from "cors"
 
 const allowedOrigins = [
-  "https://hirewire-jqof.onrender.com", // your frontend
+    "https://hirewire-jqof.onrender.com", // your frontend
 ];
 
 app.use(cors({
-  origin: allowedOrigins,
-  credentials: true, // if you're using cookies or auth headers
+    origin: allowedOrigins,
+    credentials: true, // if you're using cookies or auth headers
 }));
 
 
