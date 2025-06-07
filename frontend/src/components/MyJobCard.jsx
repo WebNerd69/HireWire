@@ -1,9 +1,11 @@
 import React, { useContext } from 'react'
 import "../App.css"
 import { AppContext } from './../context/AppContext';
-const JobCard = ({company , type , date , title , salary , location , id}) => {
+import axios from 'axios';
+import { toast } from 'react-toastify';
+const MyJobCard = ({company , type , date , title , salary , location , id}) => {
 
-     const {navigate , userType} = useContext(AppContext)
+     const {backendURL , token , fetchJobs} = useContext(AppContext)
 
      function getDaysAgoFromISO(isoDateString) {
           const now = new Date();
@@ -16,8 +18,18 @@ const JobCard = ({company , type , date , title , salary , location , id}) => {
         }
      const daysAgo = getDaysAgoFromISO(date)
 
-     const handleApply = ()=>{
-          navigate(`/job/${id}`)
+     const handleDelete = async()=>{
+          try {
+               const response = await axios.delete(`${backendURL}/api/job/delete-job/${id}`,{headers:{token}})
+               if (response.data.success) {
+                    toast.success("Job deleted Successfully")
+                    fetchJobs()
+               } else {
+                    toast.error(response.data.message)
+               }
+          } catch (error) {
+               console.log(error)
+          }
      }
   return (
     <div className='w-[90%] min-h-[240px] bg-white rounded-3xl overflow-hidden relative flex justify-center' id='jobcard'>
@@ -39,11 +51,11 @@ const JobCard = ({company , type , date , title , salary , location , id}) => {
                     <i className="ri-map-pin-line"></i>
                     <p>{location}</p>
                     </div> 
-                   {userType==="user"?<button className='px-5 py-3 bg-white rounded-full poppins-medium border-2 border-white hover:border-[#686df8]' onClick={handleApply}>Apply now</button>:<button className='px-5 py-3 bg-white rounded-full poppins-medium border-2 border-white text-gray-200 cursor-not-allowed' onClick={handleApply} disabled>Apply now</button>}
+                   <button className='px-5 py-3 bg-red-400 rounded-full poppins-medium border-2  hover:bg-red-600 text-white'  onClick={handleDelete}>Delete</button>
                </div>
           </div>
     </div>
   )
 }
 
-export default JobCard
+export default MyJobCard

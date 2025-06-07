@@ -1,6 +1,6 @@
 import React from 'react'
 import Navbar from './components/Navbar'
-import { useScroll } from 'framer-motion'
+import { useScroll  } from 'framer-motion'
 import { Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import Hiring from './pages/Hiring'
@@ -8,13 +8,17 @@ import AppliedJobs from './pages/AppliedJobs'
 import Applications from './pages/Applications'
 import Profile from './pages/Profile'
 import Lenis from 'lenis'
-import { useEffect } from 'react'
+import { useEffect ,useContext } from 'react'
 import Footer from './components/Footer'
 import Login from './pages/Login'
 import PartnerLogin from './pages/PartnerLogin'
 import { ToastContainer } from 'react-toastify'
+import JobComponent from './components/JobComponent'
+import { AppContext } from './context/AppContext'
+import UserData from './pages/UserData'
+import Newsletter from './pages/Newsletter'
 const App = () => {
-
+  const {loginStatus , userType} = useContext(AppContext)
   const { scrollY } = useScroll()
 
   useEffect(() => {
@@ -44,16 +48,19 @@ const App = () => {
   }, []);
   return (
     <div className='overflow-x-hidden min-w-[100vw] '>
-      <Navbar scrollY={scrollY} />
+      {loginStatus && <Navbar scrollY={scrollY} />}
       <ToastContainer/>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
+        {loginStatus ?<Route path="/" element={<Home />} />:<Route path="/" element={<Login />} />}
+        <Route path='/login' element={<Login/>}/>
         <Route path="/partner-login" element={<PartnerLogin />} />
-        <Route path="/hiring" element={<Hiring />} />
-        <Route path="/applied" element={<AppliedJobs />} />
-        <Route path="/applications" element={<Applications />} />
+        {<Route path="/hiring" element={<Hiring />} />}
+        {<Route path="/applied" element={<AppliedJobs />} />}
+        {<Route path='/newsletter' element={<Newsletter/>}/>}
+        {<Route path="/applications" element={<Applications />} />}
         <Route path="/profile" element={<Profile />} />
+        <Route path="/job/:id" element={<JobComponent/>}/>
+        <Route path='/user-data/:id' element={<UserData/>}/>
       </Routes>
       <Footer />
     </div>

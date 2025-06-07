@@ -2,18 +2,20 @@ import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
      name:{type:String,required:true},
+     middleName:{type:String},
+     lastName:{type:String},
      email:{type:String,required:true,unique:true},
      password:{type:String,required:true},
-     resume:{type:Object, default:null },
-     appliedJobs:{type:Array,default:[]},
-     phone:{type:String, default:null},
-     address:{type:String, default:null},
-     country:{type:String, default:null},
-     state:{type:String, default:null},
-     district:{type:String, default:null},
+     resume:{type:Object},
+     appliedJobs:{type:Array},
+     phone:{type:String},
+     address:{type:String},
+     country:{type:String},
+     state:{type:String},
+     district:{type:String},
      
      
-},{minimize:false})
+},{minimize:false , strict:false})
 
-const userModel = mongoose.model.user || mongoose.model("user",userSchema)
+const userModel = mongoose.models.users || mongoose.model("users",userSchema)
 export default userModel;

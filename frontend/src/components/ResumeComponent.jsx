@@ -1,74 +1,103 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
+import { AppContext } from '../context/AppContext';
+import axios from 'axios';
 
-const ResumeComponent = () => {
-  const [formData, setFormData] = useState({
-    firstName: '',
-    middleName: '',
-    lastName: '',
-    phone: '',
-    email: '',
-    linkedIn: '',
-    gitHub: '',
-    portfolio: '',
+const ResumeComponent = ({ id }) => {
 
-    degree1Name: '',
-    degree1StartDate: '',
-    degree1EndDate: '', 
+  const { backendURL, userData } = useContext(AppContext)
+  const [resume, setResume] = useState()
+  const fetchResume = async (id) => {
+    try {
+      const response = await axios.get(`${backendURL}/api/user/get-user/${id}`)
+      setResume(response.data.user.resume)
+      // console.log("resume response" , response.data.user.resume)
+      setFormData({
+        firstName: response.data.user.resume.firstName,
+        middleName: response.data.user.resume.middleName,
+        lastName: response.data.user.resume.lastName,
+        phone: response.data.user.resume.phone,
+        email: response.data.user.resume.email,
+        linkedIn: response.data.user.resume.linkedIn,
+        gitHub: response.data.user.resume.gitHub,
+        portfolio: response.data.user.resume.portfolio,
 
-    degree2Name: '',
-    degree2StartDate: '',
-    degree2EndDate: '', 
+        degree1Name: response.data.user.resume.degree1Name,
+        degree1StartDate: response.data.user.resume.degree1StartDate,
+        degree1EndDate: response.data.user.resume.degree1EndDate,
 
-    skills: '',
+        degree2Name: response.data.user.resume.degree2Name,
+        degree2StartDate: response.data.user.resume.degree2StartDate,
+        degree2EndDate: response.data.user.resume.degree2EndDate,
 
-    project1Name: '',
-    project1Link: '',
-    project1Description: '',
+        experience1Name: response.data.user.resume.experience1Name,
+        experience1StartDate: response.data.user.resume.experience1StartDate,
+        experience1EndDate: response.data.user.resume.experience1EndDate,
 
-    project2Name: '',
-    project2Link: '',
-    project2Description: '',
+        experience2Name: response.data.user.resume.experience2Name,
+        experience2StartDate: response.data.user.resume.experience2StartDate,
+        experience2EndDate: response.data.user.resume.experience2EndDate,
 
-    certificate1Name:'',
-    certificate1SerialNumber:'',
-    certificate1IssueingInstitute:'',
+        skills: response.data.user.resume.skills,
 
-    certificate2Name:'',
-    certificate2SerialNumber:'',
-    certificate2IssueingInstitute:'',
+        project1Name: response.data.user.resume.project1Name,
+        project1Link: response.data.user.resume.project1Link,
+        project1Description: response.data.user.resume.project1Description,
 
-    acheivements: '',
-    summary:''
-  });
+        project2Name: response.data.user.resume.project2Name,
+        project2Link: response.data.user.resume.project2Link,
+        project2Description: response.data.user.resume.project2Description,
+
+        certificate1Name: response.data.user.resume.certificate1Name,
+        certificate1SerialNumber: response.data.user.resume.certificate1SerialNumber,
+        certificate1IssueingInstitute: response.data.user.resume.certificate1IssueingInstitute,
+
+        certificate2Name: response.data.user.resume.certificate2Name,
+        certificate2SerialNumber: response.data.user.resume.certificate2SerialNumber,
+        certificate2IssueingInstitute: response.data.user.resume.certificate2IssueingInstitute,
+
+        acheivements: response.data.user.resume.acheivements,
+        summary: response.data.user.resume.summary
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  useEffect(() => {
+    fetchResume(id)
+  },[]
+  )
+  const [formData, setFormData] = useState({});
 
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    
-      setFormData(prev => ({
-        ...prev,
-        [name]: value
-      }));
-    
+
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form Data:', formData);
     // You can add API call or save logic here
+    try {
+      const response = await axios.put(`${backendURL}/api/user/update-resume/${userData._id}`, { formData })
+      setResume(prev => ({
+        ...prev, ...response.data.resume
+      }))
+
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   return (
-    <div className='w-full pb-10'>
-      <div className='w-full h-[15%] px-10 mt-5 mb-20 flex items-center'>
-        <div className='flex items-center justify-center w-24 h-24 rounded-full bg-[#686df8]'>
-          <p className='poppins-semi-bold text-6xl text-white'>R</p>
-        </div>
-        <p className='text-3xl poppins-semi-bold px-10'>Hi Rudra! 👋</p>
-      </div>
+    <div className='w-full h-full'>
 
       <form
-        className='w-full  poppins-medium px-10 flex flex-col gap-y-10 relative'
+        className='w-full  poppins-medium px-10 flex flex-col gap-y-10 relative '
         onSubmit={handleSubmit}
       >
         {/* personal info */}
@@ -209,8 +238,80 @@ const ResumeComponent = () => {
             </div>
           </div>
         </div>
+
+        {/* Experiences */}
+        <div className='w-full px-10 py-10 rounded-xl border-2 relative flex flex-col justify-center gap-y-10'>
+          <p className='text-xl text-zinc-900 absolute -top-4 bg-gray-50 px-2 poppins-semi-bold'>Experiences</p>
+          <div className='w-full flex items-center justify-between'>
+            <div className='px-5 py-5 border-2 w-[30%] relative rounded-lg'>
+              <p className='text-sm text-zinc-900 absolute -top-3 bg-gray-50 px-2'>Company name</p>
+              <input
+                type="text"
+                name='experience1Name'
+                value={formData.experience1Name || ''}
+                onChange={handleChange}
+                placeholder='Company name + post'
+                className='bg-transparent w-full h-full outline-none'
+              />
+            </div>
+            <div className='px-5 py-5 border-2 w-[30%] relative rounded-lg'>
+              <p className='text-sm text-zinc-900 absolute -top-3 bg-gray-50 px-2'>Start date</p>
+              <input
+                type="date"
+                name={`experience1StartDate`}
+                value={formData.experience1StartDate || ''}
+                onChange={handleChange}
+                className='bg-transparent w-full h-full outline-none'
+              />
+            </div>
+            <div className='px-5 py-5 border-2 w-[30%] relative rounded-lg'>
+              <p className='text-sm text-zinc-900 absolute -top-3 bg-gray-50 px-2'>End date</p>
+              <input
+                type="date"
+                name={`experience1EndDate`}
+                value={formData.experience1EndDate || ''}
+                onChange={handleChange}
+                className='bg-transparent w-full h-full outline-none'
+              />
+            </div>
+          </div>
+
+          <div className='w-full flex items-center justify-between'>
+            <div className='px-5 py-5 border-2 w-[30%] relative rounded-lg'>
+              <p className='text-sm text-zinc-900 absolute -top-3 bg-gray-50 px-2'>Company name</p>
+              <input
+                type="text"
+                name={`experience2Name`}
+                value={formData.experience2Name || ''}
+                onChange={handleChange}
+                placeholder='Degree + institute name'
+                className='bg-transparent w-full h-full outline-none'
+              />
+            </div>
+            <div className='px-5 py-5 border-2 w-[30%] relative rounded-lg'>
+              <p className='text-sm text-zinc-900 absolute -top-3 bg-gray-50 px-2'>Start date</p>
+              <input
+                type="date"
+                name={`experience2StartDate`}
+                value={formData.experience2StartDate || ''}
+                onChange={handleChange}
+                className='bg-transparent w-full h-full outline-none'
+              />
+            </div>
+            <div className='px-5 py-5 border-2 w-[30%] relative rounded-lg'>
+              <p className='text-sm text-zinc-900 absolute -top-3 bg-gray-50 px-2'>End date</p>
+              <input
+                type="date"
+                name={`experience2EndDate`}
+                value={formData.experience2EndDate || ''}
+                onChange={handleChange}
+                className='bg-transparent w-full h-full outline-none'
+              />
+            </div>
+          </div>
+        </div>
         {/* skills */}
-        <div className='px-5 py-5 border-2 w-[30%] relative rounded-xl'>
+        <div className='px-5 py-5 border-2 w-[60%] relative rounded-xl'>
           <p className='text-xl poppins-semi-bold text-zinc-900 absolute -top-3 bg-gray-50 px-2'>Skills</p>
           <input
             type="text"
@@ -379,12 +480,12 @@ const ResumeComponent = () => {
               />
             </div>
           </div>
-        
+
         </div>
 
 
         {/* acheivements */}
-        <div className='px-5 py-5 border-2 w-[30%] relative rounded-xl'>
+        <div className='px-5 py-5 border-2 w-[60%] relative rounded-xl'>
           <p className='text-xl poppins-semi-bold text-zinc-900 absolute -top-3 bg-gray-50 px-2'>Acheivements</p>
           <input
             type="text"
@@ -397,7 +498,7 @@ const ResumeComponent = () => {
         </div>
 
         {/* summary */}
-        <div className='px-5 py-5 border-2 w-[50%] h-[25%] relative rounded-lg'>
+        <div className='px-5 py-5 border-2 w-[100%]  relative rounded-lg'>
           <p className='text-xl text-zinc-900 absolute -top-3 bg-gray-50 px-2 poppins-semi-bold'>Summary</p>
           <textarea
             name="summary"
@@ -409,9 +510,9 @@ const ResumeComponent = () => {
         </div>
         <button
           type="submit"
-          className='mt-5 bg-blue-500 text-white px-6 py-2 rounded-lg self-end'
+          className='mt-5 hover:bg-[#686df8] bg-gray-300 hover:text-white text-zinc-500 px-6 py-2 rounded-full self-end'
         >
-          Submit
+          Update resume
         </button>
       </form>
     </div>

@@ -68,10 +68,12 @@ const Charts = () => {
   return (
     <div className='w-[100vw] h-[100vh] flex justify-center items-center'>
         <div className='w-[90%] h-[80%] bg-white rounded-xl shadow-xl flex justify-center items-center'>
-            <div className='w-[40%] h-[100%] px-10 flex items-center justify-center'>
+            <div className='w-[40%] h-[100%] px-10 flex items-center justify-center flex-col gap-y-3'>
+              <p className='poppins-medium text-lg'>Job availability distribution</p>
               <Doughnut data={doughnutData} options={{responsive: true}}/>
             </div>
-            <div className='w-[60%] h-[100%] px-10 flex items-center justify-center'>
+            <div className='w-[60%] h-[100%] px-10 flex items-center justify-center flex-col gap-y-3' >
+              <p className='poppins-medium text-lg'>Worldwide Job trends</p>
               <Line data={lineData} options={{responsive: true}}/>
             </div>
         </div>

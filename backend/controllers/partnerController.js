@@ -18,7 +18,7 @@ const partnerLogin = async (req, res) => {
         if (!isMatch) {
             return res.json({ success: false, message: "Invalid credentials." });
         }
-
+        const userType = "partner"
         // Create JWT token
         const payload = {
             id: partner._id,
@@ -27,7 +27,7 @@ const partnerLogin = async (req, res) => {
         };
         const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "7d" });
 
-        res.json({ success: true, token });
+        res.json({ success: true, token , partner , userType });
     } catch (error) {
         console.log(error);
         res.json({
@@ -69,7 +69,7 @@ const partnerRegister = async (req, res) => {
             companyName
         });
         await partner.save();
-
+        const userType = "partner"
         // Create JWT token
         const payload = {
             id: partner._id,
@@ -78,7 +78,7 @@ const partnerRegister = async (req, res) => {
         };
         const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "7d" });
 
-        res.json({ success: true, token });
+        res.json({ success: true, token , partner , userType});
     } catch (error) {
         console.log(error);
         res.json({
@@ -88,5 +88,26 @@ const partnerRegister = async (req, res) => {
     }
 };
 
+// get partner details
+const getPartnerById = async (req, res) => {
+    try {
+        const { id } = req.params;
 
-export { partnerLogin, partnerRegister, };
+        const partner = await partnerModel.findById(id).select("-password"); // exclude password
+
+        if (!partner) {
+            return res.status(404).json({ success: false, message: "Partner not found" });
+        }
+
+        res.json({ success: true, partner });
+    } catch (error) {
+        console.error("Error fetching partner:", error.message);
+        res.status(500).json({
+            success: false,
+            message: "Server error",
+            error: error.message
+        });
+    }
+};
+
+export { partnerLogin, partnerRegister, getPartnerById};

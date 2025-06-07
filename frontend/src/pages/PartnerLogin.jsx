@@ -1,6 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useState } from 'react'
+import { AppContext } from '../context/AppContext'
+import axios from 'axios'
+import { toast } from 'react-toastify'
 const PartnerLogin = () => {
+
+  const {backendURL , setToken , setLoginStatus , setUserData , setUserType } = useContext(AppContext)
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [name, setName] = useState('')
@@ -22,6 +28,70 @@ const PartnerLogin = () => {
   const handleCompanyNameChange = (e) => {
     setCompanyName(e.target.value)
   }
+  const handleLogin = async () => {
+    try {
+      const response = await axios.post(`${backendURL}/api/partner/login`, { email, password });
+  
+      if (response.data.success) {
+        const { password, ...safePartner } = response.data.partner;
+  
+        // Store in state
+        setToken(response.data.token);
+        setLoginStatus(true);
+        setUserData(safePartner);
+        setUserType('partner');
+  
+        // Store in localStorage
+        localStorage.setItem("partnerData", JSON.stringify(safePartner));
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("userId", safePartner._id);
+        localStorage.setItem("userType", "partner");
+  
+        toast.success("Logged in successfully");
+      } else {
+        toast.error(response.data.message || "Login failed");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      toast.error("Something went wrong during login");
+    }
+  };
+  
+  const handleSignUp = async () => {
+    try {
+      const response = await axios.post(`${backendURL}/api/partner/register`, {
+        name,
+        email,
+        password,
+        companyName
+      });
+  
+      if (response.data.success) {
+        const { password, ...safePartner } = response.data.partner;
+  
+        // Store in state
+        setToken(response.data.token);
+        setLoginStatus(true);
+        setUserData(safePartner);
+        setUserType('partner');
+  
+        // Store in localStorage
+        localStorage.setItem("partnerData", JSON.stringify(safePartner));
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("userId", safePartner._id);
+        localStorage.setItem("userType", "partner");
+  
+        toast.success("Profile created successfully");
+        toast.success("Logged in successfully");
+      } else {
+        toast.error(response.data.message || "Registration failed");
+      }
+    } catch (error) {
+      console.error("Signup error:", error);
+      toast.error("Something went wrong during registration");
+    }
+  };
+  
 
   return (
     <div className='w-[100vw] h-[100vh] flex justify-center items-center relative overflow-hidden'>
@@ -51,7 +121,7 @@ const PartnerLogin = () => {
               />
               <i className={isPasswordVisible ? "ri-eye-close-line text-xl text-[#686df8] cursor-pointer font-bold" : "ri-eye-line text-xl text-[#686df8] cursor-pointer font-bold"} onClick={() => setIsPasswordVisible(!isPasswordVisible)}></i>
             </div>
-            <button className='w-[20%] bg-gray-100 text-slate-900 hover:bg-[#686df8] hover:text-white px-10 py-3 rounded-full poppins-medium transition-all duration-300'>Login</button>
+            <button className='w-[20%] bg-gray-100 text-slate-900 hover:bg-[#686df8] hover:text-white px-10 py-3 rounded-full poppins-medium transition-all duration-300' onClick={handleLogin}>Login</button>
           </div>
         </div>)}
         {currentState === 'signup' && (<div className='w-full h-full flex flex-col gap-y-5 justify-center items-center'>
@@ -98,7 +168,7 @@ const PartnerLogin = () => {
               />
               <i className={isPasswordVisible ? "ri-eye-close-line text-xl text-[#686df8] cursor-pointer font-bold" : "ri-eye-line text-xl text-[#686df8] cursor-pointer font-bold"} onClick={() => setIsPasswordVisible(!isPasswordVisible)}></i>
             </div>
-            <button className='w-[20%] bg-gray-100 text-slate-900 hover:bg-[#686df8] hover:text-white px-10 py-3 rounded-full poppins-medium transition-all duration-300'>Sign Up</button>
+            <button className='w-[20%] bg-gray-100 text-slate-900 hover:bg-[#686df8] hover:text-white px-10 py-3 rounded-full poppins-medium transition-all duration-300' onClick={handleSignUp}>Sign Up</button>
           </div>
         </div>)}
         {currentState === 'login' && (<p className='absolute bottom-10 left-14 text-sm text-gray-500' >Don't have an account? <span className='text-[#686df8] cursor-pointer ' onClick={() => setCurrentState('signup')}>Sign up</span></p>)}

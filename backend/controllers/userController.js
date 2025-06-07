@@ -2,6 +2,7 @@ import userModel from "../model/userModel.js";
 import validator from "validator";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
+import mongoose from "mongoose"
 
 // create token
 const createToken = (payload) => {
@@ -96,61 +97,75 @@ const userRegister = async (req, res) => {
 // Update user personal information
 const updateUserInfo = async (req, res) => {
      try {
-          const { id } = req.params;
-          const {
-               name,
-               phone,
-               address,
-               country,
-               state,
-               district
-          } = req.body;
-
-          // Find user by id
-          const user = await userModel.findById(id);
-          if (!user) {
-               return res.status(404).json({ success: false, message: "User not found." });
-          }
-
-          // Update fields if provided
-          if (name) user.name = name;
-          if (phone) user.phone = phone;
-          if (address) user.address = address;
-          if (country) user.country = country;
-          if (state) user.state = state;
-          if (district) user.district = district;
-
-          await user.save();
-
-          res.json({ success: true, message: "User information updated successfully.", user });
+       const { id } = req.params;
+       const formData = req.body;
+   
+       if (!mongoose.Types.ObjectId.isValid(id)) {
+         return res.status(400).json({ success: false, message: "Invalid user ID format." });
+       }
+   
+       console.log("Received form data:", formData);
+   
+       const updatedUser = await userModel.findByIdAndUpdate(
+         id,
+         { $set: formData }, // ensure fields are directly overwritten
+         { new: true, runValidators: true }
+       );
+   
+       if (!updatedUser) {
+         return res.status(404).json({ success: false, message: "User not found." });
+       }
+   
+       console.log("Updated user:", updatedUser);
+   
+       return res.status(200).json({
+         success: true,
+         message: "User updated successfully.",
+         user: updatedUser
+       });
      } catch (error) {
-          console.log(error);
-          res.status(500).json({ success: false, message: error.message });
+       console.error("Update failed:", error);
+       return res.status(500).json({ success: false, message: error.message });
      }
-};
+   };
 
 // Add or update user resume
 const updateUserResume = async (req, res) => {
      try {
-          const { id } = req.params;
-          const { formData } = req.body;
-
-          // Find user by id
-          const user = await userModel.findById(id);
-          if (!user) {
-               return res.status(404).json({ success: false, message: "User not found." });
-          }
-
-          // Update resume
-          user.resume = formData;
-          await user.save();
-
-          res.json({ success: true, message: "Resume updated successfully.", resume: user.resume });
+       const { id } = req.params;
+       const { formData } = req.body;
+   
+       // Validate user ID format
+       if (!id || !mongoose.Types.ObjectId.isValid(id)) {
+         return res.status(400).json({ success: false, message: "Invalid user ID." });
+       }
+   
+       // Validate formData
+       if (!formData || typeof formData !== "object") {
+         return res.status(400).json({ success: false, message: "Invalid resume data." });
+       }
+   
+       // Update resume using findByIdAndUpdate
+       const updatedUser = await userModel.findByIdAndUpdate(
+         id,
+         { resume: formData },
+         { new: true, runValidators: true }
+       );
+   
+       if (!updatedUser) {
+         return res.status(404).json({ success: false, message: "User not found." });
+       }
+   
+       res.status(200).json({
+         success: true,
+         message: "Resume updated successfully.",
+         resume: updatedUser.resume,
+       });
      } catch (error) {
-          console.log(error);
-          res.status(500).json({ success: false, message: error.message });
+       console.error("Error updating resume:", error);
+       res.status(500).json({ success: false, message: "Server error. Please try again later." });
      }
-};
+   };
 const getUser = async (req, res) => {
      try {
           const { id } = req.params;

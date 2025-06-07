@@ -1,7 +1,20 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import "../App.css"
 import searchIcon from "../assets/search-2-line.svg"
+import { AppContext } from '../context/AppContext'
 const Hero2 = () => {
+     const {searchBy , setSearchBy , setSearchValue , searchValue} = useContext(AppContext)
+
+     const toggleSearchParamHandler = () => {
+          if (searchBy === "title") {
+               setSearchBy("location")
+          } else {
+               setSearchBy("title")
+          }
+     }
+     const searchValueHandler = (e)=>{
+          setSearchValue(e.target.value)
+     }
      return (
           <div className='w-[100vw] h-[100vh] flex justify-center items-center'>
                <div className='flex flex-col justify-center items-center '>
@@ -14,9 +27,25 @@ const Hero2 = () => {
                     <div className="search w-[800px] rounded-full border-2 border-[#686DF8] px-3 py-2 flex justify-between items-center mt-5 shadow-lg poppins-medium">
                          <div className='flex gap-x-5 items-center'>
                               <button className='bg-[#686DF8] text-white px-3 py-3 rounded-full'><img src={searchIcon} alt="search" className='w-5 h-5' /></button>
-                              <input type="text" placeholder='Search for a job' className='w-[600px] px-5 text-lg outline-none' />
+                              <input type="text" placeholder='Search for a job' className='w-[600px] px-5 text-lg outline-none' value={searchValue} onChange={(e)=>searchValueHandler(e)} />
                          </div>
-                         <div className='w-[20%] bg-[#989bf93d] text-[#686df8] px-3 py-3 rounded-full text-center '><i className="ri-map-pin-line"></i> Location</div>
+                         <button
+                              type="button"
+                              className="w-[20%] bg-[#989bf93d] text-[#686df8] px-3 py-3 rounded-full text-center cursor-pointer flex items-center justify-center gap-2 poppins-semi-bold tracking-wide"
+                              onClick={toggleSearchParamHandler}
+                         >
+                              {searchBy === "location" ? (
+                                   <>
+                                        <i className="ri-map-pin-line"></i>
+                                        Location
+                                   </>
+                              ) : (
+                                   <>
+                                        <i className="ri-ball-pen-line"></i>
+                                        Title
+                                   </>
+                              )}
+                         </button>
 
                     </div>
                     <div className='flex flex-col items-center gap-y-2 absolute bottom-5'>

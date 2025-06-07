@@ -1,6 +1,10 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import { AppContext } from '../context/AppContext'
+import axios from 'axios'
+import { toast } from 'react-toastify'
 
-const createJobs = () => {
+const CreateJobs = () => {
+     const {backendURL , token ,fetchJobs} = useContext(AppContext)
      const [formData, setformData] = useState(
           {
                companyName: "",
@@ -16,13 +20,25 @@ const createJobs = () => {
      const handleChange = (e) => {
           setformData({ ...formData, [e.target.name]: e.target.value })
      }
-     const handleSubmit = (e) => {
+     const handleSubmit = async (e) => {
           e.preventDefault()
           console.log(formData)
+          try {
+               const response = await axios.post(`${backendURL}/api/job/add`,{...formData},{headers:{token}})
+               if (response.data.success) {
+                    fetchJobs()
+                    toast.success("Job published successfully")
+               } else {
+                    console.log(response.data.message)
+               }
+          } catch (error) {
+               console.log(error)
+          }
+
      }
      return (
-          <div className='w-full h-full flex flex-col px-10 py-10 items-center'>
-               <p className='text-3xl poppins-semi-bold pb-10 w-full text-start'>Create Job</p>
+          <div className='w-full h-full flex flex-col px-10 py-5 items-center'>
+               <p className='text-3xl poppins-semi-bold pb-5 w-full text-start'>Create Job</p>
                <form onSubmit={handleSubmit} className=' h-full flex flex-col poppins-medium w-[70%] gap-y-10'>
                     <div className='px-5 py-5 border-2 w-[40%] relative rounded-lg'>
                          <p className='text-sm text-zinc-900 absolute -top-3 bg-gray-50 px-2'>Company name</p>
@@ -33,6 +49,7 @@ const createJobs = () => {
                               onChange={handleChange}
                               placeholder='ABCD'
                               className='bg-transparent w-full h-full outline-none'
+                              required
                          />
                     </div>
                     <div className='flex justify-between '>
@@ -45,6 +62,7 @@ const createJobs = () => {
                                    onChange={handleChange}
                                    placeholder='Software engineer'
                                    className='bg-transparent w-full h-full outline-none'
+                                   required
                               />
                          </div>
                          <div className='px-5 py-5 border-2 w-[40%] relative rounded-lg'>
@@ -56,6 +74,7 @@ const createJobs = () => {
                                    onChange={handleChange}
                                    placeholder='Bangaluru | India'
                                    className='bg-transparent w-full h-full outline-none'
+                                   required
                               />
                          </div>
                     </div>
@@ -69,6 +88,7 @@ const createJobs = () => {
                                    onChange={handleChange}
                                    placeholder='MERN React Node'
                                    className='bg-transparent w-full h-full outline-none'
+                                   required
                               />
                          </div>
 
@@ -81,6 +101,7 @@ const createJobs = () => {
                                    onChange={handleChange}
                                    placeholder='12lps-15lpa'
                                    className='bg-transparent w-full h-full outline-none'
+                                   required
                               />
                          </div>
                     </div>
@@ -93,6 +114,7 @@ const createJobs = () => {
                               onChange={handleChange}
                               placeholder='Job description'
                               className='bg-transparent w-full h-full outline-none resize-none'
+                              required
                          />
                     </div>
                     <div className='flex justify-between '>
@@ -103,6 +125,7 @@ const createJobs = () => {
                                    value={formData.jobType}
                                    onChange={handleChange}
                                    className='bg-transparent w-full h-full outline-none hover:cursor-pointer'
+                                   required
                               >
                                    <option value="">Select Job Type</option>
                                    <option value="Remote">Remote</option>
@@ -110,31 +133,32 @@ const createJobs = () => {
                                    <option value="Hybrid">Hybrid</option>
                               </select>
                          </div>
-                         <div className='px-5 py-5 border-2 w-[40%] relative rounded-lg'>
+                         <div className='px-5 py-5 border-2 w-[40%] relative rounded-lg cursor-pointer'>
                               <p className='text-sm text-zinc-900 absolute -top-3 bg-gray-50 px-2'>Job Category</p>
                               <select
                                    name="jobCategory"
                                    value={formData.jobCategory}
                                    onChange={handleChange}
                                    className='bg-transparent w-full h-full outline-none'
+                                   required
                               >
                                    <option value="">Select Job Category</option>
                                    <option value="Software">Software</option>
                                    <option value="Engineering">Engineering</option>
                                    <option value="Design">Design</option>
-                                   <option value="Construction">Construction</option>
+                                   <option value="Architecture">Architecture</option>
                                    <option value="Marketing">Marketing</option>
-                                   <option value="Sales">Sales</option>
-                                   <option value="Finance">Finance</option>
+                                   <option value="HR">HR</option>
+                                   <option value="Legal">Legal</option>
                               </select>
                          </div>
                     </div>
 
 
-                    <button className='px-7 py-3 bg-gray-200 absolute rounded-full bottom-10 hover:bg-[#686df8] hover:text-white transition-colors duration-300'>Publish</button>
+                    <button className='px-7 py-3 bg-gray-200 absolute rounded-full bottom-10 hover:bg-[#686df8] hover:text-white transition-colors duration-300 mt-7'>Publish</button>
                </form>
           </div>
      )
 }
 
-export default createJobs
+export default CreateJobs

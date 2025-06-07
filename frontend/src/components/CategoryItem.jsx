@@ -1,14 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { AppContext } from '../context/AppContext'
 
-const CategoryItem = ({type,num}) => {
-     let op = "opening"
-     if (num>1){
-          op="openings"
-     }
+const CategoryItem = ({type}) => {
+  const {navigate} = useContext(AppContext)
+  const navToHiring =()=>{
+    navigate("/hiring")
+  }
   return (
-    <div className='bg-white rounded-xl min-h-[70px] flex justify-between items-center px-5 shadow-md hover:cursor-pointer'>
+    <div className='bg-white rounded-xl min-h-[70px] flex justify-between items-center px-5 shadow-md hover:cursor-pointer' onClick={navToHiring}>
           <p className='text-xl poppins-medium'>{type}</p>
-          <p className='poppins-light-italic text-sm text-gray-600'>{`${num} ${op}`}</p>
     </div>
   )
 }

@@ -1,8 +1,10 @@
-import { useState, useRef } from "react"
+import { useState, useRef, useContext } from "react"
 import { motion, useMotionValueEvent } from "framer-motion"
 import { NavLink } from "react-router-dom"
 import profileIcon from "../assets/user-3-fill.svg"
+import { AppContext } from "../context/AppContext"
 const Navbar = ({ scrollY }) => {
+  const {userType} = useContext(AppContext)
   const [isHidden, setIsHidden] = useState(false)
   const lastYRef = useRef(0)
 
@@ -48,13 +50,17 @@ const Navbar = ({ scrollY }) => {
           className={({ isActive }) => (isActive ? "sm:px-7 sm:py-2 px-5 py-2 rounded-full bg-[#686df8] transition-all duration-300 ease-in-out text-white" : "sm:px-7 sm:py-2 px-5 py-2 rounded-full transition-all duration-300 ease-in-out")} onClick={()=>setProfileMenuIsOpen(false)}>
           Hiring
         </NavLink>
-        <NavLink to='/applied'
+        {userType==="user"&&<NavLink to='/applied'
           className={({ isActive }) => (isActive ? "sm:px-7 sm:py-2 px-5 py-2 rounded-full bg-[#686df8] transition-all duration-300 ease-in-out text-white" : "sm:px-7 sm:py-2 px-5 py-2 rounded-full transition-all duration-300 ease-in-out")} onClick={()=>setProfileMenuIsOpen(false)}>
           Applied Jobs
-        </NavLink>
-        <NavLink to='/applications'
+        </NavLink>}
+        {userType==="partner"&&<NavLink to='/applications'
           className={({ isActive }) => (isActive ? "sm:px-7 sm:py-2 px-5 py-2 rounded-full bg-[#686df8] transition-all duration-300 ease-in-out text-white" : "sm:px-7 sm:py-2 px-5 py-2 rounded-full transition-all duration-300 ease-in-out")} onClick={()=>setProfileMenuIsOpen(false)}>
           Applications
+        </NavLink>}
+        <NavLink to='/newsletter'
+          className={({ isActive }) => (isActive ? "sm:px-7 sm:py-2 px-5 py-2 rounded-full bg-[#686df8] transition-all duration-300 ease-in-out text-white" : "sm:px-7 sm:py-2 px-5 py-2 rounded-full transition-all duration-300 ease-in-out")} onClick={()=>setProfileMenuIsOpen(false)}>
+          Newsletter
         </NavLink>
         <NavLink to="/profile"
           className= "sm:px-3 sm:py-3 px-5 py-5 rounded-full transition-all duration-300 ease-in-out bg-[#686df8]"

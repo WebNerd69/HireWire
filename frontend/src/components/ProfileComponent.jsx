@@ -1,17 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
+import { AppContext } from '../context/AppContext';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const ProfileComponent = () => {
-     const [formData, setFormData] = useState({
-          firstName: '',
-          middleName: '',
-          lastName: '',
-          phone: '',
-          country: '',
-          state: '',
-          district: '',
-          address: ''
-     });
 
+     const { userData, backendURL, setUserData } = useContext(AppContext)
+
+     const [formData, setFormData] = useState({
+
+          name: "",
+          middleName: "",
+          lastName: "",
+          phone: "",
+          country: "",
+          state: "",
+          district: "",
+          address: ""
+     });
+     useEffect(() => {
+          try {        
+            if (userData) {
+              setFormData({
+                name: userData.name || "",
+                middleName: userData.middleName || "",
+                lastName: userData.lastName || "",
+                phone: userData.phone || "",
+                country: userData.country || "",
+                state: userData.state || "",
+                district: userData.district || "",
+                address: userData.address || "",
+              });
+            }
+          } catch (error) {
+            console.error("Invalid userData in localStorage:", error);
+          //   localStorage.removeItem("userData"); // Clean up bad data
+          }
+        }, []);
+        
+
+     // functions
      const handleChange = (e) => {
           const { name, value } = e.target;
           setFormData(prev => ({
@@ -20,21 +48,28 @@ const ProfileComponent = () => {
           }));
      };
 
-     const handleSubmit = () => {
-          console.log('Form Data:', formData);
+     const handleSubmit = async () => {
+          // console.log('Form Data:', formData);
           // you can add API call or save logic here
+          try {
+               const response = await axios.put(`${backendURL}/api/user/update-info/${userData._id}`, formData)
+               if (response.data.success) {
+                    toast.success("Profile updated successfully")
+                    setUserData(prev=>({
+                         ...prev,...formData
+                    }))
+                    localStorage.removeItem("userData")
+                    localStorage.setItem("userData",JSON.stringify(userData))
+               } else {
+                    toast.error(response.data.message)
+               }
+          } catch (error) {
+               console.log(error)
+          }
      };
 
      return (
           <div className='w-full h-full'>
-               {/* top section */}
-               <div className='w-full h-[15%] px-10 flex items-center'>
-                    <div className='flex items-center justify-center w-24 h-24 rounded-full bg-[#686df8]'>
-                         <p className='poppins-semi-bold text-6xl text-white'>R</p>
-                    </div>
-                    <p className='text-3xl poppins-semi-bold px-10'>Hi Rudra! 👋</p>
-               </div>
-
                {/* info section */}
                <div className='w-full h-[85%] poppins-medium px-10 flex flex-col gap-y-10 py-20 relative'>
                     <div className='w-full flex items-center justify-between'>
@@ -42,8 +77,8 @@ const ProfileComponent = () => {
                               <p className='text-sm text-zinc-900 absolute -top-3 bg-gray-50 px-2'>First name</p>
                               <input
                                    type="text"
-                                   name="firstName"
-                                   value={formData.firstName}
+                                   name="name"
+                                   value={formData.name}
                                    onChange={handleChange}
                                    placeholder='First name'
                                    className='bg-transparent w-full h-full outline-none'

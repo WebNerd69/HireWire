@@ -1,59 +1,108 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Hero2 from '../components/Hero2'
 import JobCard from '../components/JobCard'
+import App from '../App'
+import { AppContext } from '../context/AppContext'
 
-const Category = ({onClick, category, isActive}) => {
-  return (
-    <div className={`px-5 py-2 rounded-full border-2 ${isActive ? 'bg-[#686DF8] border-[#686DF8] text-white' : 'bg-gray-100 text-black border-gray-100'} hover:border-[#686DF8] hover:cursor-pointer poppins-medium`} onClick={onClick}>
-      <p>{category}</p>
-    </div>
-  )
+const Category = ({ onClick, category, isActive }) => {
+   return (
+      <button className={`px-5 py-2 rounded-full border-2 ${isActive ? 'bg-[#686DF8] border-[#686DF8] text-white' : 'bg-gray-100 text-black border-gray-100'} hover:border-[#686DF8] hover:cursor-pointer poppins-medium`} onClick={onClick}>
+         {category}
+      </button>
+   )
 }
 
 const Hiring = () => {
-  const jobs = [
-    {company:"Google", type:"Temporary" , time:"2 days ago" , title:"Data Analyst" , salary:"150k-350k anually" , country:"India" , city:"Bangaluru"},
-    {company:"Cognizen", type:"Temporary" , time:"25 days ago" , title:"Data visualization specialist" , salary:"150k-250k anually" , country:"India" , city:"Delhi"},
-    {company:"Wipro", type:"Temporary" , time:"2 days ago" , title:"SD1" , salary:"70k-90k anually" , country:"India" , city:"Bangaluru"},
-    {company:"DRDO", type:"Permanent" , time:"29 days ago" , title:"Software developer" , salary:"750k-990k anually" , country:"India" , city:"Hydrabad"},
-    {company:"HAL", type:"Intern" , time:"2 days ago" , title:"Bam banayenge" , salary:"150k-350k anually" , country:"India" , city:"Ghaziabad"},
-  ]
+   const { jobs, searchValue , searchBy} = useContext(AppContext)
+   console.log(jobs)
 
-  const [category, setCategory] = useState();
-  const categories = ["Software", "Engineering", "Design", "Architecture", "Marketing", "Sales", "Finance", "HR", "Legal", "Customer Support"];
+   const [filterVisible, setFilterVisible] = useState(true)
+   const [filteredJobs, setFilteredJobs] = useState(jobs)
+   const [category, setCategory] = useState("")
 
-  return (
-    <div className='w-full flex flex-col'>
-      <Hero2 />
-      <div className='w-full h-32 flex justify-evenly items-center py-10'>
-        <p className='poppins-medium text-lg px-5 py-2 bg-[#686DF8] text-white rounded-xl '>Filters <i className="ri-filter-3-fill"></i></p>
-        <div className='flex gap-x-5 overflow-x-auto'>
-          {categories.map((cat) => (
-            <Category 
-              key={cat}
-              onClick={() => setCategory(cat)} 
-              category={cat}
-              isActive={category === cat}
-            />
-          ))}
-        </div>
+   const toggleFilterVisible = () => {
+      setFilterVisible(!filterVisible)
+   }
+   const setcategoryHandler = (cat) => {
+      if (category === cat) {
+         setCategory("")
+         filterByCategory("")
+      } else {
+         setCategory(cat)
+         filterByCategory(cat)
+      }
+   }
+
+   const filterByCategory = (cat) => {
+      console.log(cat)
+      if (cat === "") {
+         setFilteredJobs(jobs)
+      } else {
+         const filteredData = jobs.filter(job => job.jobCategory === cat)
+         console.log(filteredData)
+         setFilteredJobs(filteredData)
+      }
+   }
+
+   const filterBySearch = ()=>{
+      setCategory('')
+      if (searchBy === 'location') {
+         const filteredData = jobs.filter(job => job.jobLocation.toLowerCase().includes(searchValue))
+         setFilteredJobs(filteredData)
+      } else {
+         const filteredData = jobs.filter(job => job.jobTitle.toLowerCase().includes(searchValue))
+         setFilteredJobs(filteredData)
+         
+      }
+   }
+
+   useEffect(() => {
+     filterBySearch()
+   }, [searchBy , searchValue])
+   
+   const categories = ["Software", "Engineering", "Design", "Architecture", "Marketing", "HR", "Legal"];
+
+   return (
+      <div className='w-full flex flex-col'>
+         <Hero2 />
+         <div className='w-full h-32 flex justify-between px-32 items-center py-10'>
+            <button className={filterVisible ? 'poppins-medium text-lg px-5 py-2 bg-[#686DF8] text-white rounded-xl cursor-pointer' : 'poppins-medium text-lg px-5 py-2 bg-gray-200 text-zinc-900 rounded-xl cursor-pointer'} onClick={toggleFilterVisible}>Filters <i className="ri-filter-3-fill"></i></button>
+            <div className='flex gap-x-5 overflow-x-auto items-center justify-start w-[90%]'>
+               {filterVisible && categories.map((cat) => (
+                  <Category
+                     key={cat}
+                     onClick={() => setcategoryHandler(cat)}
+                     category={cat}
+                     isActive={category === cat}
+                  />
+               ))}
+            </div>
+         </div>
+         <div className='w-full flex py-5 poppins-light-italic items-center justify-center text-sm text-zinc-600'><p>{`found ${filteredJobs.length} result(s)`}</p></div>
+         <div className='h-full w-full flex flex-col gap-y-10 items-center px-10'>
+            {Array.isArray(filteredJobs) && filteredJobs.length > 0 ? (
+               filteredJobs.map((value, index) => (
+                  <JobCard
+                     id={value._id}
+                     key={index}
+                     company={value.companyName}
+                     type={value.jobType}
+                     date={value.jobCreatedAt}
+                     title={value.jobTitle}
+                     salary={value.jobSalary}
+                     location={value.jobLocation}
+                     description={value.jobDescription}
+                     category={value.jobCategory}
+                     tags={value.jobTags}
+                  />
+               ))
+            ) : (
+               
+               <div className='w-full h-60 flex justify-center items-center poppins-medium text-xl '>Oops! No such jobs are available</div>
+            )}
+         </div>
       </div>
-      <div className='h-full w-full flex flex-col gap-y-10 items-center px-10'>
-        {jobs.map((value, index) => (
-          <JobCard 
-            key={index}
-            company={value.company} 
-            type={value.type} 
-            time={value.time} 
-            title={value.title} 
-            salary={value.salary} 
-            country={value.country} 
-            city={value.city} 
-          />
-        ))}
-      </div>
-    </div>
-  )
+   )
 }
 
 export default Hiring
