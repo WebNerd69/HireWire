@@ -63,8 +63,9 @@ Optimized for mobile and desktop for a consistent experience across devices.
 / database
   ├── collections
       ├── jobs
-      ├── candidates
-      ├── applications
+      ├── user
+      ├── jobapplications
+      └── partners
 ```
 
 ---
@@ -72,8 +73,9 @@ Optimized for mobile and desktop for a consistent experience across devices.
 ## ⚙️ MongoDB Collections
 
 * **jobs** → jobTitle, company, location, description, requirements, salary, status
-* **candidates** → name, email, phone, skills, education, experience, resume
-* **applications** → jobId, candidateId, status, appliedDate
+* **users** → name, email, phone, password, skills, education, experience, resume
+* **jobapplications** → jobId, candidateId, status, appliedDate
+* **partners** → ._id, name, companyName, email, password
 
 Includes indexes on searchable fields (jobTitle, skills, location) for optimized performance.
 
