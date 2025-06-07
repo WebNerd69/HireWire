@@ -7,7 +7,7 @@ export const AppContext = createContext();
 
 const AppContextProvider = (props) => {
      const navigate = useNavigate();
-     const backendURL = import.meta.env.VITE_BACKEND_URL
+     const backendURL = "https://hirewire-backend.onrender.com"
      // state variables
      const [userType, setUserType] = useState(null)
      const [token, setToken] = useState(null)
