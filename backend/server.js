@@ -15,6 +15,7 @@ app.use(express.json())
 
 const allowedOrigins = [
     "https://hirewire-jqof.onrender.com", // your frontend
+    "http://localhost:5173"
 ];
 
 app.use(cors({

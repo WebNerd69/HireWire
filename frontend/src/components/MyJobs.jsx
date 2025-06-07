@@ -15,7 +15,7 @@ const MyJobs = () => {
      }, [])
 
      return (
-          <div className='w-full min-h-screen px-10'>
+          <div className='w-full min-h-screen md:px-10 px-5'>
                <div className=' flex flex-col items-center gap-y-10'>
                     <p className='text-3xl poppins-semi-bold w-[90%]'>My jobs</p>
                     {filteredJobs.map((value, index) => {

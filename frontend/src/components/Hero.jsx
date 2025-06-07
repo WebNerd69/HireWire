@@ -13,24 +13,24 @@ const Hero = () => {
           }
      }
      return (
-          <div className='w-[100vw] h-[100vh] flex justify-center items-center'>
+          <div className='w-[100vw] h-screen flex justify-center items-center relative'>
                {/* <div className='absolute sarina-regular text-[#686df887] text-[200vh] left-0 -z-10 blur-xl'>h</div> */}
                <div className='flex flex-col justify-center items-center '>
-                    <div className='text-center text-5xl font-semibold text-slate-850 poppins-medium leading-relaxed cursor-default'>
-                         <p>Land your <span className='text-white bg-[#686DF8] px-2 py-1'>dream job</span> with ease using</p>
-                         <p className='poppins-semi-bold'>HireWire</p>
+                    <div className='text-center md:text-5xl text-2xl font-semibold text-slate-850 poppins-medium leading-relaxed cursor-default'>
+                         <p>Land your <span className='text-white bg-[#686DF8] px-2 py-1 '>dream job</span> with ease using</p>
+                         <p className='poppins-semi-bold mt-7'>HireWire</p>
                     </div>
-                    <div className='text-center text-sm text-slate-600 poppins-light-italic cursor-default'>
+                    <div className='text-center md:text-sm text-[10px] text-slate-600 poppins-light-italic cursor-default tracking-wide'>
                          <p>HireWire is a platform that helps you find your dream job without hastle.</p>
                     </div>
-                    <div className="search w-[800px] rounded-full border-2 border-[#686DF8] px-3 py-2 flex justify-between items-center mt-5 shadow-lg poppins-medium bg-white">
+                    <div className="search md:w-[800px] w-[400px] rounded-full border-2 border-[#686DF8] px-3 py-2 flex justify-between items-center md:mt-5 mt-8 shadow-lg poppins-medium bg-white">
                          <div className='flex gap-x-5 items-center' onClick={() => navigate("/hiring")}>
-                              <button className='bg-[#686DF8] text-white px-3 py-3 rounded-full'><img src={searchIcon} alt="search" className='w-5 h-5' /></button>
-                              <input type="text" placeholder='Search for a job' className='w-[600px] px-5 text-lg outline-none bg-transparent' />
+                              <div className='bg-[#686DF8] text-white px-3 py-3 rounded-full'><img src={searchIcon} alt="search" className='w-5 h-5' /></div>
+                              <input type="text" placeholder='Search for a job' className='w-[150px] md:px-5 md:w-[600px] md:text-lg text-sm outline-none bg-transparent' />
                          </div>
                          <button
                               type="button"
-                              className="w-[20%] bg-[#989bf93d] text-[#686df8] px-3 py-3 rounded-full text-center cursor-pointer flex items-center justify-center gap-2"
+                              className="md:w-[20%]  bg-[#989bf93d] text-[#686df8] px-3 py-3 rounded-full text-center cursor-pointer flex items-center justify-center gap-2 text-sm md:text-[1rem]"
                               onClick={toggleSearchParamHandler}
                          >
                               {searchBy === "location" ? (
@@ -48,11 +48,11 @@ const Hero = () => {
 
 
                     </div>
-                    <div className='flex flex-col items-center gap-y-2 absolute bottom-5'>
-                         <div className=' w-[60px] h-[60px] bg-[#686DF8] rounded-full flex items-center justify-center font-bold'>
-                              <i className="ri-arrow-down-line text-3xl text-white"></i>
+                    <div className='flex flex-col items-center gap-y-2 absolute md:bottom-5 bottom-10'>
+                         <div className=' md:w-[60px] md:h-[60px] w-12 h-12 bg-[#686DF8] rounded-full flex items-center justify-center font-bold'>
+                              <i className="ri-arrow-down-line md:text-3xl text-2xl text-white"></i>
                          </div>
-                         <p className='text-gray-500 text-sm poppins-light-italic'>scroll to explore</p>
+                         <p className='text-gray-500 md:text-sm poppins-light-italic text-[12px]'>scroll to explore</p>
                     </div>
                </div>
           </div>

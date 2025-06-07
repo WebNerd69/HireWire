@@ -66,14 +66,15 @@ const lineData = {
 
 const Charts = () => {
   return (
-    <div className='w-[100vw] h-[100vh] flex justify-center items-center'>
-        <div className='w-[90%] h-[80%] bg-white rounded-xl shadow-xl flex justify-center items-center'>
-            <div className='w-[40%] h-[100%] px-10 flex items-center justify-center flex-col gap-y-3'>
-              <p className='poppins-medium text-lg'>Job availability distribution</p>
+    <div className='w-[100vw] md:h-[100vh] h-[120vh] flex justify-center items-center flex-col'>
+      <p className='text-2xl poppins-semi-bold tracking-wide py-3'>Job Market Insights</p>
+        <div className='w-[100%] h-[80%] bg-white rounded-xl shadow-xl flex justify-center items-center flex-col md:flex-row'>
+            <div className='md:w-[25%] w-[70%] h-[100%] md:px-10 flex items-center justify-center flex-col gap-y-3 relative'>
+              <p className='poppins-medium text-lg top-10 absolute'>Job availability distribution</p>
               <Doughnut data={doughnutData} options={{responsive: true}}/>
             </div>
-            <div className='w-[60%] h-[100%] px-10 flex items-center justify-center flex-col gap-y-3' >
-              <p className='poppins-medium text-lg'>Worldwide Job trends</p>
+            <div className='md:w-[70%] w-[90%] h-[100%] md:px-10 flex items-center justify-center flex-col gap-y-3 relative' >
+              <p className='poppins-medium text-lg absolute top-10'>Worldwide Job trends</p>
               <Line data={lineData} options={{responsive: true}}/>
             </div>
         </div>

@@ -69,11 +69,11 @@ const ProfileComponent = () => {
      };
 
      return (
-          <div className='w-full h-full'>
+          <div className='w-full h-full relative'>
                {/* info section */}
-               <div className='w-full h-[85%] poppins-medium px-10 flex flex-col gap-y-10 py-20 relative'>
-                    <div className='w-full flex items-center justify-between'>
-                         <div className='px-5 py-5 border-2 w-[30%] relative rounded-lg'>
+               <div className='w-full md:h-[85%] h-[100vh] poppins-medium px-10 flex flex-col gap-y-10 py-20 relative'>
+                    <div className='w-full flex md:items-center justify-between flex-col md:flex-row gap-y-3'>
+                         <div className='px-5 py-5 border-2 md:w-[30%] relative rounded-lg'>
                               <p className='text-sm text-zinc-900 absolute -top-3 bg-gray-50 px-2'>First name</p>
                               <input
                                    type="text"
@@ -84,7 +84,7 @@ const ProfileComponent = () => {
                                    className='bg-transparent w-full h-full outline-none'
                               />
                          </div>
-                         <div className='px-5 py-5 border-2 w-[30%] relative rounded-lg'>
+                         <div className='px-5 py-5 border-2 md:w-[30%] relative rounded-lg'>
                               <p className='text-sm text-zinc-900 absolute -top-3 bg-gray-50 px-2'>Middle name</p>
                               <input
                                    type="text"
@@ -95,7 +95,7 @@ const ProfileComponent = () => {
                                    className='bg-transparent w-full h-full outline-none'
                               />
                          </div>
-                         <div className='px-5 py-5 border-2 w-[30%] relative rounded-lg'>
+                         <div className='px-5 py-5 border-2 md:w-[30%] relative rounded-lg'>
                               <p className='text-sm text-zinc-900 absolute -top-3 bg-gray-50 px-2'>Last name</p>
                               <input
                                    type="text"
@@ -108,7 +108,7 @@ const ProfileComponent = () => {
                          </div>
                     </div>
 
-                    <div className='px-5 py-5 border-2 w-[30%] relative rounded-lg'>
+                    <div className='px-5 py-5 border-2 md:w-[30%] relative rounded-lg'>
                          <p className='text-sm text-zinc-900 absolute -top-3 bg-gray-50 px-2'>Phone</p>
                          <input
                               type="text"
@@ -120,8 +120,9 @@ const ProfileComponent = () => {
                          />
                     </div>
 
-                    <div className='w-full flex items-center justify-between'>
-                         <div className='px-5 py-5 border-2 w-[30%] relative rounded-lg'>
+                    <div className='w-full flex md:items-center justify-between flex-col
+                    md:flex-row gap-y-3'>
+                         <div className='px-5 py-5 border-2 md:w-[30%] relative rounded-lg'>
                               <p className='text-sm text-zinc-900 absolute -top-3 bg-gray-50 px-2'>Country</p>
                               <input
                                    type="text"
@@ -132,7 +133,7 @@ const ProfileComponent = () => {
                                    className='bg-transparent w-full h-full outline-none'
                               />
                          </div>
-                         <div className='px-5 py-5 border-2 w-[30%] relative rounded-lg'>
+                         <div className='px-5 py-5 border-2 md:w-[30%] relative rounded-lg'>
                               <p className='text-sm text-zinc-900 absolute -top-3 bg-gray-50 px-2'>State</p>
                               <input
                                    type="text"
@@ -143,7 +144,7 @@ const ProfileComponent = () => {
                                    className='bg-transparent w-full h-full outline-none'
                               />
                          </div>
-                         <div className='px-5 py-5 border-2 w-[30%] relative rounded-lg'>
+                         <div className='px-5 py-5 border-2 md:w-[30%] relative rounded-lg'>
                               <p className='text-sm text-zinc-900 absolute -top-3 bg-gray-50 px-2'>District</p>
                               <input
                                    type="text"
@@ -156,7 +157,7 @@ const ProfileComponent = () => {
                          </div>
                     </div>
 
-                    <div className='px-5 py-5 border-2 w-[50%] h-[25%] relative rounded-lg'>
+                    <div className='px-5 py-5 border-2 md:w-[50%] h-[25%] relative rounded-lg'>
                          <p className='text-sm text-zinc-900 absolute -top-3 bg-gray-50 px-2'>Address</p>
                          <textarea
                               name="address"
@@ -169,7 +170,7 @@ const ProfileComponent = () => {
 
                     <button
                          onClick={handleSubmit}
-                         className='px-5 py-3 bg-gray-200 absolute rounded-full bottom-10 hover:bg-[#686df8] hover:text-white transition-colors duration-300'
+                         className='px-5 py-3 bg-gray-200 absolute rounded-full bottom-2 hover:bg-[#686df8] hover:text-white transition-colors duration-300'
                     >
                          Save changes
                     </button>

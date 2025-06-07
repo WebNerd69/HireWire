@@ -58,9 +58,9 @@ const AppliedJobCard = ({ _id, jobId, userId, userName, status }) => {
      }, [])
 
      return (
-          <div className='w-[70%] min-h-[240px] bg-white rounded-3xl overflow-hidden relative flex justify-center' id='jobcard'>
+          <div className='md:w-[70%] w-[90%] min-h-[240px] bg-white rounded-3xl overflow-hidden relative flex justify-center' id='jobcard'>
                {/* <div className='h-full w-2 absolute left-0 top-0 bg-red-400'></div> */}
-               <div className='flex flex-col gap-y-3 relative w-full px-20 py-7'>
+               <div className='flex flex-col gap-y-3 relative w-full md:px-20 py-5 px-5 '>
                     <div className='flex w-full gap-x-16 poppins-light text-gray-400 text-sm'>
                          <p>{jobData.companyName}</p>
                          <p>{jobData.jobType}</p>
@@ -72,14 +72,16 @@ const AppliedJobCard = ({ _id, jobId, userId, userName, status }) => {
                          <p className='poppins-light-italic text-gray-400'>{jobData.jobSalary}</p>
                     </div>
 
-                    <div className='w-[100%] h-[33%] bg-[#686df82e] absolute -left-0 -bottom-0 flex justify-between items-center px-10 border-t-2 border-[#686df85f]'>
-                         <div className='text-lg flex gap-x-5 poppins-medium text-[#686df8]'>
+                    <div className='w-[100%] h-[33%] bg-[#686df82e] absolute -left-0 -bottom-0 flex justify-between items-center md:px-10 px-5 md:text-[1rem] text-[.75rem] border-t-2 border-[#686df85f]'>
+                         <div className='md:text-lg flex gap-x-5 poppins-medium text-[#686df8]'>
                               <i className="ri-map-pin-line"></i>
                               <p>{jobData.jobLocation}</p>
                          </div>
-                         <div className='flex gap-x-5'>
+                         <div className='flex md:gap-x-5 gap-x-2'>
 
-                              <p className={`px-5 py-3 rounded-full poppins-medium ${statusColor[status]}`}>{status}</p>
+                              <p className={`px-5 py-3 rounded-full poppins-medium ${statusColor[status]}`}>
+                                   {status}
+                                   </p>
                               {status !== "Cancelled" && status !== "hired" && status !== "rejected" && <button className='px-5 py-3 bg-red-100 rounded-full poppins-medium  hover:bg-red-200' onClick={()=>cancelhandler(_id)}>Cancel</button>}
                          </div>
                     </div>

@@ -5,7 +5,7 @@ import { toast } from 'react-toastify'
 
 const CreateJobs = () => {
      // console.log("Hello There")
-     const {backendURL , token ,fetchJobs} = useContext(AppContext)
+     const { backendURL, token, fetchJobs } = useContext(AppContext)
      const [formData, setformData] = useState(
           {
                companyName: "",
@@ -25,7 +25,7 @@ const CreateJobs = () => {
           e.preventDefault()
           console.log(formData)
           try {
-               const response = await axios.post(`${backendURL}/api/job/add`,{...formData},{headers:{token}})
+               const response = await axios.post(`${backendURL}/api/job/add`, { ...formData }, { headers: { token } })
                if (response.data.success) {
                     fetchJobs()
                     toast.success("Job published successfully")
@@ -38,10 +38,10 @@ const CreateJobs = () => {
 
      }
      return (
-          <div className='w-full h-full flex flex-col px-10 py-5 items-center'>
+          <div className='w-full md:h-[100vh] h-[130vh] flex flex-col px-10 py-5 items-center relative'>
                <p className='text-3xl poppins-semi-bold pb-5 w-full text-start'>Create Job</p>
-               <form onSubmit={handleSubmit} className=' h-full flex flex-col poppins-medium w-[70%] gap-y-10'>
-                    <div className='px-5 py-5 border-2 w-[40%] relative rounded-lg'>
+               <form onSubmit={handleSubmit} className='w-full h-full flex flex-col poppins-medium md:w-[70%] gap-y-10'>
+                    <div className='px-5 py-5 border-2 md:w-[40%] relative rounded-lg'>
                          <p className='text-sm text-zinc-900 absolute -top-3 bg-gray-50 px-2'>Company name</p>
                          <input
                               type="text"
@@ -53,8 +53,8 @@ const CreateJobs = () => {
                               required
                          />
                     </div>
-                    <div className='flex justify-between '>
-                         <div className='px-5 py-5 border-2 w-[40%] relative rounded-lg'>
+                    <div className='flex justify-between md:flex-row flex-col gap-y-3'>
+                         <div className='px-5 py-5 border-2 md:w-[40%] relative rounded-lg'>
                               <p className='text-sm text-zinc-900 absolute -top-3 bg-gray-50 px-2'>Job title</p>
                               <input
                                    type="text"
@@ -66,7 +66,7 @@ const CreateJobs = () => {
                                    required
                               />
                          </div>
-                         <div className='px-5 py-5 border-2 w-[40%] relative rounded-lg'>
+                         <div className='px-5 py-5 border-2 md:w-[40%] relative rounded-lg'>
                               <p className='text-sm text-zinc-900 absolute -top-3 bg-gray-50 px-2'>Job location</p>
                               <input
                                    type="text"
@@ -79,8 +79,8 @@ const CreateJobs = () => {
                               />
                          </div>
                     </div>
-                    <div className='flex justify-between '>
-                         <div className='px-5 py-5 border-2 w-[40%] relative rounded-lg'>
+                    <div className='flex justify-between md:flex-row flex-col gap-y-3'>
+                         <div className='px-5 py-5 border-2 md:w-[40%] relative rounded-lg'>
                               <p className='text-sm text-zinc-900 absolute -top-3 bg-gray-50 px-2'>Job Tags</p>
                               <input
                                    type="text"
@@ -93,7 +93,7 @@ const CreateJobs = () => {
                               />
                          </div>
 
-                         <div className='px-5 py-5 border-2 w-[40%] relative rounded-lg'>
+                         <div className='px-5 py-5 border-2 md:w-[40%] relative rounded-lg'>
                               <p className='text-sm text-zinc-900 absolute -top-3 bg-gray-50 px-2'>Job salary</p>
                               <input
                                    type="text"
@@ -118,8 +118,8 @@ const CreateJobs = () => {
                               required
                          />
                     </div>
-                    <div className='flex justify-between '>
-                         <div className='px-5 py-5 border-2 w-[40%] relative rounded-lg'>
+                    <div className='flex justify-between md:flex-row flex-col gap-y-3'>
+                         <div className='px-5 py-5 border-2 md:w-[40%] relative rounded-lg'>
                               <p className='text-sm text-zinc-900 absolute -top-3 bg-gray-50 px-2'>Job type</p>
                               <select
                                    name="jobType"
@@ -134,7 +134,7 @@ const CreateJobs = () => {
                                    <option value="Hybrid">Hybrid</option>
                               </select>
                          </div>
-                         <div className='px-5 py-5 border-2 w-[40%] relative rounded-lg cursor-pointer'>
+                         <div className='px-5 py-5 border-2 md:w-[40%] relative rounded-lg cursor-pointer'>
                               <p className='text-sm text-zinc-900 absolute -top-3 bg-gray-50 px-2'>Job Category</p>
                               <select
                                    name="jobCategory"
@@ -156,7 +156,7 @@ const CreateJobs = () => {
                     </div>
 
 
-                    <button className='px-7 py-3 bg-gray-200 absolute rounded-full bottom-10 hover:bg-[#686df8] hover:text-white transition-colors duration-300 mt-7'>Publish</button>
+                    <button className='px-7 py-3 bg-gray-200 absolute rounded-full md:bottom-10 bottom-5 hover:bg-[#686df8] hover:text-white transition-colors duration-300 mt-7'>Publish</button>
                </form>
           </div>
      )

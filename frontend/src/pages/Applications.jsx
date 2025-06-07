@@ -27,9 +27,9 @@ const Applications = () => {
   return (
     <div className='w-screen min-h-[100vh] relative'>
       <div className='w-full h-[33vh] flex justify-center items-center'>
-        <p className='text-5xl poppins-semi-bold text-zinc-800'>Review all the <span className='text-white px-3 py-1 bg-[#686df8]'>Job Applications</span></p>
+        <p className='md:text-5xl text-2xl poppins-semi-bold text-zinc-800'>Review all the <span className='text-white px-3 py-1 bg-[#686df8]'>Job Applications</span></p>
       </div>
-      <div className='w-full flex flex-col gap-y-20 items-center px-20 py-10'>
+      <div className='w-full flex flex-col gap-y-20 items-center md:px-20 px-5 md:py-10 py-10'>
         {
           applications.map((value,index)=>{
             return(

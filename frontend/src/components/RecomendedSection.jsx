@@ -14,17 +14,10 @@ const RecomendedSection = () => {
           { type: "🙎‍♂️ Human Resource" },
           { type: "🧑‍⚖️ Legal" },
      ]
-     // const jobs = [
-     //      {company:"Google", type:"Temporary" , time:"2 days ago" , title:"Data Analyst" , salary:"150k-350k anually" , country:"India" , city:"Bangaluru"},
-     //      {company:"Cognizen", type:"Temporary" , time:"25 days ago" , title:"Data visualization specialist" , salary:"150k-250k anually" , country:"India" , city:"Delhi"},
-     //      {company:"Wipro", type:"Temporary" , time:"2 days ago" , title:"SD1" , salary:"70k-90k anually" , country:"India" , city:"Bangaluru"},
-     //      {company:"DRDO", type:"Permanent" , time:"29 days ago" , title:"Software developer" , salary:"750k-990k anually" , country:"India" , city:"Hydrabad"},
-     //      {company:"HAL", type:"Intern" , time:"2 days ago" , title:"Bam banayenge" , salary:"150k-350k anually" , country:"India" , city:"Ghaziabad"},
-     // ]
      return (
           <div className='w-[100vw] h-[100vh] bg-gray-100 flex justify-center items-center relative flex-col'>
-               <div className='w-[100%] flex justify-between px-20'>
-                    <div className=' px-12'>
+               <div className='w-[100%] flex md:justify-between md:px-20 px-5'>
+                    <div className=' px-5'>
                          <p className='text-4xl poppins-semi-bold text-slate-900'>Recomended jobs</p>
                          <p className='text-sm text-gray-500 poppins-light-italic'>Explore for new jobs here.</p>
                     </div>
@@ -33,16 +26,16 @@ const RecomendedSection = () => {
                          <button className='px-5 py-2 poppins-medium rounded-full bg-gray-200 border-2 border-gray-100 hover:border-[#686df8]'>Premium jobs</button>
                     </div> */}
                </div>
-               <div className='w-[100%] h-[80vh] flex justify-evenly items-center '>
-                    <div className='h-[90%] w-[25%] flex flex-col gap-y-5 overflow-hidden'>
-                         <div className='bg-white rounded-xl min-h-[70px] flex justify-between items-center px-5 shadow-md hover:cursor-pointer sticky top-0'>
-                              <p className='poppins-semi-bold text-2xl '>Job Categories</p>
+               <div className='w-[100%] h-[80vh] flex md:justify-evenly md:items-center flex-col md:flex-row '>
+                    <div className='md:h-[90%] h-[40%] md:w-[25%] w-[100%] flex md:flex-col md:gap-y-2 overflow-hidden flex-wrap md:flex-nowrap px-2 gap-x-3 py-5 md:py-2'>
+                         <div className='bg-white rounded-xl md:min-h-[70px] h-10 flex justify-between items-center px-5 shadow-md hover:cursor-pointer sticky top-0'>
+                              <p className='poppins-semi-bold md:text-2xl text-sm '>Job Categories</p>
                          </div>
                          {types.map((value, index) => {
                               return (<CategoryItem key={index} type={value.type} />)
                          })}
                     </div>
-                    <div className='h-[90%] w-[55%] flex flex-col gap-y-20 overflow-auto items-end px-10'>
+                    <div className='h-[90%] md:w-[55%] w-full flex flex-col md:gap-y-20  gap-y-5 overflow-auto md:items-end md:px-10 px-3 items-center'>
                          {jobs.map((value, index) => {
                               return (
                                    <JobCard

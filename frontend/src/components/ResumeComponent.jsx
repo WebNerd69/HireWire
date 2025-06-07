@@ -94,19 +94,19 @@ const ResumeComponent = ({ id }) => {
   };
 
   return (
-    <div className='w-full h-full'>
+    <div className='w-screen h-full'>
 
       <form
-        className='w-full  poppins-medium px-10 flex flex-col gap-y-10 relative '
+        className='w-full poppins-medium px-10 flex flex-col gap-y-10 relative '
         onSubmit={handleSubmit}
       >
         {/* personal info */}
         <div className='w-full px-10 py-10 rounded-xl border-2 relative flex flex-col justify-center gap-y-10'>
           <p className='text-xl text-zinc-900 absolute -top-4 bg-gray-50 px-2 poppins-semi-bold'>Personal information</p>
-          <div className='w-full flex items-center justify-between'>
+          <div className='w-full flex md:items-center justify-between flex-col md:flex-row gap-y-3'>
             {/* First, Middle, Last Name */}
             {['firstName', 'middleName', 'lastName'].map((field, idx) => (
-              <div key={idx} className='px-5 py-5 border-2 w-[30%] relative rounded-lg'>
+              <div key={idx} className='px-5 py-5 border-2 md:w-[30%] relative rounded-lg'>
                 <p className='text-sm text-zinc-900 absolute -top-3 bg-gray-50 px-2'>
                   {field.replace(/([A-Z])/g, ' $1').trim()}
                 </p>
@@ -122,13 +122,13 @@ const ResumeComponent = ({ id }) => {
             ))}
           </div>
 
-          <div className='w-[65%] flex items-center justify-between'>
+          <div className='md:w-[65%] flex md:items-center justify-between md:flex-row flex-col gap-y-3'>
             {/* Phone & Email */}
             {[
               { name: 'phone', placeholder: '+91-1234567890', type: 'text' },
               { name: 'email', placeholder: 'cooldude@gmail.com', type: 'email' },
             ].map((item, idx) => (
-              <div key={idx} className='px-5 py-5 border-2 w-[46%] relative rounded-lg'>
+              <div key={idx} className='px-5 py-5 border-2 md:w-[46% ] relative rounded-lg'>
                 <p className='text-sm text-zinc-900 absolute -top-3 bg-gray-50 px-2'>
                   {item.name.charAt(0).toUpperCase() + item.name.slice(1)}
                 </p>
@@ -148,9 +148,9 @@ const ResumeComponent = ({ id }) => {
         {/* links */}
         <div className='w-full px-10 py-10 rounded-xl border-2 relative flex flex-col justify-center gap-y-10'>
           <p className='text-xl text-zinc-900 absolute -top-4 bg-gray-50 px-2 poppins-semi-bold'>Links</p>
-          <div className='w-full flex items-center justify-between'>
+          <div className='w-full flex md:items-center justify-between md:flex-row flex-col gap-y-3'>
             {['linkedIn', 'gitHub', 'portfolio'].map((field, idx) => (
-              <div key={idx} className='px-5 py-5 border-2 w-[30%] relative rounded-lg'>
+              <div key={idx} className='px-5 py-5 border-2 md:w-[30%] relative rounded-lg'>
                 <p className='text-sm text-zinc-900 absolute -top-3 bg-gray-50 px-2'>
                   {field.charAt(0).toUpperCase() + field.slice(1)}
                 </p>
@@ -170,8 +170,8 @@ const ResumeComponent = ({ id }) => {
         {/* Education */}
         <div className='w-full px-10 py-10 rounded-xl border-2 relative flex flex-col justify-center gap-y-10'>
           <p className='text-xl text-zinc-900 absolute -top-4 bg-gray-50 px-2 poppins-semi-bold'>Education</p>
-          <div className='w-full flex items-center justify-between'>
-            <div className='px-5 py-5 border-2 w-[30%] relative rounded-lg'>
+          <div className='w-full flex md:items-center justify-between flex-col md:flex-row gap-y-3'>
+            <div className='px-5 py-5 border-2 md:w-[30%] relative rounded-lg'>
               <p className='text-sm text-zinc-900 absolute -top-3 bg-gray-50 px-2'>Degree 1</p>
               <input
                 type="text"
@@ -182,7 +182,7 @@ const ResumeComponent = ({ id }) => {
                 className='bg-transparent w-full h-full outline-none'
               />
             </div>
-            <div className='px-5 py-5 border-2 w-[30%] relative rounded-lg'>
+            <div className='px-5 py-5 border-2 md:w-[30%] relative rounded-lg'>
               <p className='text-sm text-zinc-900 absolute -top-3 bg-gray-50 px-2'>Start date</p>
               <input
                 type="date"
@@ -192,7 +192,7 @@ const ResumeComponent = ({ id }) => {
                 className='bg-transparent w-full h-full outline-none'
               />
             </div>
-            <div className='px-5 py-5 border-2 w-[30%] relative rounded-lg'>
+            <div className='px-5 py-5 border-2 md:w-[30%] relative rounded-lg'>
               <p className='text-sm text-zinc-900 absolute -top-3 bg-gray-50 px-2'>End date</p>
               <input
                 type="date"
@@ -204,8 +204,8 @@ const ResumeComponent = ({ id }) => {
             </div>
           </div>
 
-          <div className='w-full flex items-center justify-between'>
-            <div className='px-5 py-5 border-2 w-[30%] relative rounded-lg'>
+          <div className='w-full flex md:items-center justify-between md:flex-row flex-col gap-y-3'>
+            <div className='px-5 py-5 border-2 md:w-[30%] relative rounded-lg'>
               <p className='text-sm text-zinc-900 absolute -top-3 bg-gray-50 px-2'>Degree 2</p>
               <input
                 type="text"
@@ -216,7 +216,7 @@ const ResumeComponent = ({ id }) => {
                 className='bg-transparent w-full h-full outline-none'
               />
             </div>
-            <div className='px-5 py-5 border-2 w-[30%] relative rounded-lg'>
+            <div className='px-5 py-5 border-2 md:w-[30%] relative rounded-lg'>
               <p className='text-sm text-zinc-900 absolute -top-3 bg-gray-50 px-2'>Start date</p>
               <input
                 type="date"
@@ -226,7 +226,7 @@ const ResumeComponent = ({ id }) => {
                 className='bg-transparent w-full h-full outline-none'
               />
             </div>
-            <div className='px-5 py-5 border-2 w-[30%] relative rounded-lg'>
+            <div className='px-5 py-5 border-2 md:w-[30%] relative rounded-lg'>
               <p className='text-sm text-zinc-900 absolute -top-3 bg-gray-50 px-2'>End date</p>
               <input
                 type="date"
@@ -242,8 +242,8 @@ const ResumeComponent = ({ id }) => {
         {/* Experiences */}
         <div className='w-full px-10 py-10 rounded-xl border-2 relative flex flex-col justify-center gap-y-10'>
           <p className='text-xl text-zinc-900 absolute -top-4 bg-gray-50 px-2 poppins-semi-bold'>Experiences</p>
-          <div className='w-full flex items-center justify-between'>
-            <div className='px-5 py-5 border-2 w-[30%] relative rounded-lg'>
+          <div className='w-full flex md:items-center justify-between flex-col md:flex-row gap-y-3'>
+            <div className='px-5 py-5 border-2 md:w-[30%] relative rounded-lg'>
               <p className='text-sm text-zinc-900 absolute -top-3 bg-gray-50 px-2'>Company name</p>
               <input
                 type="text"
@@ -254,7 +254,7 @@ const ResumeComponent = ({ id }) => {
                 className='bg-transparent w-full h-full outline-none'
               />
             </div>
-            <div className='px-5 py-5 border-2 w-[30%] relative rounded-lg'>
+            <div className='px-5 py-5 border-2 md:w-[30%] relative rounded-lg'>
               <p className='text-sm text-zinc-900 absolute -top-3 bg-gray-50 px-2'>Start date</p>
               <input
                 type="date"
@@ -264,7 +264,7 @@ const ResumeComponent = ({ id }) => {
                 className='bg-transparent w-full h-full outline-none'
               />
             </div>
-            <div className='px-5 py-5 border-2 w-[30%] relative rounded-lg'>
+            <div className='px-5 py-5 border-2 md:w-[30%] relative rounded-lg'>
               <p className='text-sm text-zinc-900 absolute -top-3 bg-gray-50 px-2'>End date</p>
               <input
                 type="date"
@@ -276,8 +276,8 @@ const ResumeComponent = ({ id }) => {
             </div>
           </div>
 
-          <div className='w-full flex items-center justify-between'>
-            <div className='px-5 py-5 border-2 w-[30%] relative rounded-lg'>
+          <div className='w-full flex md:items-center justify-between flex-col md:flex-row gap-y-3'>
+            <div className='px-5 py-5 border-2 md:w-[30%] relative rounded-lg'>
               <p className='text-sm text-zinc-900 absolute -top-3 bg-gray-50 px-2'>Company name</p>
               <input
                 type="text"
@@ -288,7 +288,7 @@ const ResumeComponent = ({ id }) => {
                 className='bg-transparent w-full h-full outline-none'
               />
             </div>
-            <div className='px-5 py-5 border-2 w-[30%] relative rounded-lg'>
+            <div className='px-5 py-5 border-2 md:w-[30%] relative rounded-lg'>
               <p className='text-sm text-zinc-900 absolute -top-3 bg-gray-50 px-2'>Start date</p>
               <input
                 type="date"
@@ -298,7 +298,7 @@ const ResumeComponent = ({ id }) => {
                 className='bg-transparent w-full h-full outline-none'
               />
             </div>
-            <div className='px-5 py-5 border-2 w-[30%] relative rounded-lg'>
+            <div className='px-5 py-5 border-2 md:w-[30%] relative rounded-lg'>
               <p className='text-sm text-zinc-900 absolute -top-3 bg-gray-50 px-2'>End date</p>
               <input
                 type="date"
@@ -311,7 +311,7 @@ const ResumeComponent = ({ id }) => {
           </div>
         </div>
         {/* skills */}
-        <div className='px-5 py-5 border-2 w-[60%] relative rounded-xl'>
+        <div className='px-5 py-5 border-2 md:w-[60%] relative rounded-xl'>
           <p className='text-xl poppins-semi-bold text-zinc-900 absolute -top-3 bg-gray-50 px-2'>Skills</p>
           <input
             type="text"
@@ -325,10 +325,10 @@ const ResumeComponent = ({ id }) => {
 
         {/* projects */}
         <div className='w-full px-10 py-10 rounded-xl border-2 relative flex flex-col justify-center gap-y-10'>
-          <p className='text-xl text-zinc-900 absolute -top-4 bg-gray-50 px-2 poppins-semi-bold'>Projects</p>
+          <p className='text-xl text-zinc-900 absolute -top-4 bg-gray-50 px-2 poppins-semi-bold '>Projects</p>
           {/* project 1 */}
-          <div className='w-full flex items-center justify-between'>
-            <div className='px-5 py-5 border-2 w-[30%] relative rounded-lg'>
+          <div className='w-full flex md:items-center justify-between flex-col md:flex-row gap-y-3'>
+            <div className='px-5 py-5 border-2 md:w-[30%] relative rounded-lg'>
               <p className='text-sm text-zinc-900 absolute -top-3 bg-gray-50 px-2'>Project 1 Name</p>
               <input
                 type="text"
@@ -339,7 +339,7 @@ const ResumeComponent = ({ id }) => {
                 className='bg-transparent w-full h-full outline-none'
               />
             </div>
-            <div className='px-5 py-5 border-2 w-[30%] relative rounded-lg'>
+            <div className='px-5 py-5 border-2 md:w-[30%] relative rounded-lg'>
               <p className='text-sm text-zinc-900 absolute -top-3 bg-gray-50 px-2'>Project link</p>
               <input
                 type="text"
@@ -350,7 +350,7 @@ const ResumeComponent = ({ id }) => {
                 className='bg-transparent w-full h-full outline-none'
               />
             </div>
-            <div className='px-5 py-5 border-2 w-[30%] relative rounded-lg'>
+            <div className='px-5 py-5 border-2 md:w-[30%] relative rounded-lg'>
               <p className='text-sm text-zinc-900 absolute -top-3 bg-gray-50 px-2'>Project Description</p>
               <input
                 type="text"
@@ -364,8 +364,8 @@ const ResumeComponent = ({ id }) => {
 
           </div>
           {/* project 2 */}
-          <div className='w-full flex items-center justify-between'>
-            <div className='px-5 py-5 border-2 w-[30%] relative rounded-lg'>
+          <div className='w-full flex md:items-center justify-between flex-col md:flex-row gap-y-3'>
+            <div className='px-5 py-5 border-2 md:w-[30%] relative rounded-lg'>
               <p className='text-sm text-zinc-900 absolute -top-3 bg-gray-50 px-2'>Project 2 Name</p>
               <input
                 type="text"
@@ -376,7 +376,7 @@ const ResumeComponent = ({ id }) => {
                 className='bg-transparent w-full h-full outline-none'
               />
             </div>
-            <div className='px-5 py-5 border-2 w-[30%] relative rounded-lg'>
+            <div className='px-5 py-5 border-2 md:w-[30%] relative rounded-lg'>
               <p className='text-sm text-zinc-900 absolute -top-3 bg-gray-50 px-2'>Project link</p>
               <input
                 type="text"
@@ -387,7 +387,7 @@ const ResumeComponent = ({ id }) => {
                 className='bg-transparent w-full h-full outline-none'
               />
             </div>
-            <div className='px-5 py-5 border-2 w-[30%] relative rounded-lg'>
+            <div className='px-5 py-5 border-2 md:w-[30%] relative rounded-lg'>
               <p className='text-sm text-zinc-900 absolute -top-3 bg-gray-50 px-2'>Project Description</p>
               <input
                 type="text"
@@ -409,8 +409,8 @@ const ResumeComponent = ({ id }) => {
         <div className='w-full px-10 py-10 rounded-xl border-2 relative flex flex-col justify-center gap-y-10'>
           <p className='text-xl text-zinc-900 absolute -top-4 bg-gray-50 px-2 poppins-semi-bold'>Certificates</p>
           {/* certificate 1 */}
-          <div className='w-full flex items-center justify-between'>
-            <div className='px-5 py-5 border-2 w-[30%] relative rounded-lg'>
+          <div className='w-full flex md:items-center justify-between flex-col md:flex-row gap-y-3'>
+            <div className='px-5 py-5 border-2 md:w-[30%] relative rounded-lg'>
               <p className='text-sm text-zinc-900 absolute -top-3 bg-gray-50 px-2'>Certificate 1 Name</p>
               <input
                 type="text"
@@ -421,7 +421,7 @@ const ResumeComponent = ({ id }) => {
                 className='bg-transparent w-full h-full outline-none'
               />
             </div>
-            <div className='px-5 py-5 border-2 w-[30%] relative rounded-lg'>
+            <div className='px-5 py-5 border-2 md:w-[30%] relative rounded-lg'>
               <p className='text-sm text-zinc-900 absolute -top-3 bg-gray-50 px-2'>Serial number</p>
               <input
                 type="text"
@@ -432,7 +432,7 @@ const ResumeComponent = ({ id }) => {
                 className='bg-transparent w-full h-full outline-none'
               />
             </div>
-            <div className='px-5 py-5 border-2 w-[30%] relative rounded-lg'>
+            <div className='px-5 py-5 border-2 md:w-[30%] relative rounded-lg'>
               <p className='text-sm text-zinc-900 absolute -top-3 bg-gray-50 px-2'>Issueing Institute</p>
               <input
                 type="text"
@@ -445,8 +445,8 @@ const ResumeComponent = ({ id }) => {
             </div>
           </div>
           {/* certificate 2 */}
-          <div className='w-full flex items-center justify-between'>
-            <div className='px-5 py-5 border-2 w-[30%] relative rounded-lg'>
+          <div className='w-full flex md:items-center justify-between flex-col md:flex-row gap-y-3'>
+            <div className='px-5 py-5 border-2 md:w-[30%] relative rounded-lg'>
               <p className='text-sm text-zinc-900 absolute -top-3 bg-gray-50 px-2'>Certificate 2 Name</p>
               <input
                 type="text"
@@ -457,7 +457,7 @@ const ResumeComponent = ({ id }) => {
                 className='bg-transparent w-full h-full outline-none'
               />
             </div>
-            <div className='px-5 py-5 border-2 w-[30%] relative rounded-lg'>
+            <div className='px-5 py-5 border-2 md:w-[30%] relative rounded-lg'>
               <p className='text-sm text-zinc-900 absolute -top-3 bg-gray-50 px-2'>Serial number</p>
               <input
                 type="text"
@@ -468,7 +468,7 @@ const ResumeComponent = ({ id }) => {
                 className='bg-transparent w-full h-full outline-none'
               />
             </div>
-            <div className='px-5 py-5 border-2 w-[30%] relative rounded-lg'>
+            <div className='px-5 py-5 border-2 md:w-[30%] relative rounded-lg'>
               <p className='text-sm text-zinc-900 absolute -top-3 bg-gray-50 px-2'>Issueing Institute</p>
               <input
                 type="text"
@@ -485,7 +485,7 @@ const ResumeComponent = ({ id }) => {
 
 
         {/* acheivements */}
-        <div className='px-5 py-5 border-2 w-[60%] relative rounded-xl'>
+        <div className='px-5 py-5 border-2 md:w-[60%] relative rounded-xl'>
           <p className='text-xl poppins-semi-bold text-zinc-900 absolute -top-3 bg-gray-50 px-2'>Acheivements</p>
           <input
             type="text"
@@ -510,7 +510,7 @@ const ResumeComponent = ({ id }) => {
         </div>
         <button
           type="submit"
-          className='mt-5 hover:bg-[#686df8] bg-gray-300 hover:text-white text-zinc-500 px-6 py-2 rounded-full self-end'
+          className='my-5 hover:bg-[#686df8] bg-gray-300 hover:text-white text-zinc-500 px-6 py-2 rounded-full self-end'
         >
           Update resume
         </button>
