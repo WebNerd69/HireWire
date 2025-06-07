@@ -132,7 +132,12 @@ Once registered, you'll gain access to the job posting panel.
 * Delete operations auto-update UI without reloading
 
 ---
+## Explore Opportunities with HireWire!
 
+Ready to see HireWire in action and discover your next big opportunity? We've got a live demo sizzling and waiting for you!
+
+🚀 **[Jump into the HireWire Experience – Click Here!](https://hirewire-jqof.onrender.com)** 🌟
+---
 
 
 ## 📬 Contact Developer
