@@ -9,7 +9,9 @@ const Applications = () => {
   const [applications, setApplications] = useState([])
   const fetchApplicationData = async () => {
     try {
-      const response = await axios.get(`${backendURL}/api/jobApplication/by-author/${userData._id}`)
+      const partnerId = userData._id
+
+      const response = await axios.get(`${backendURL}/api/jobApplication/by-author/${partnerId}`)
       if (response.data.success) {
 
         setApplications(response.data.applications)
@@ -30,7 +32,7 @@ const Applications = () => {
         <p className='md:text-5xl text-2xl poppins-semi-bold text-zinc-800'>Review all the <span className='text-white px-3 py-1 bg-[#686df8]'>Job Applications</span></p>
       </div>
       <div className='w-full flex flex-col gap-y-20 items-center md:px-20 px-5 md:py-10 py-10'>
-        {
+        {applications.length>0?
           applications.map((value,index)=>{
             return(
               <ApplicationCard
@@ -43,7 +45,10 @@ const Applications = () => {
                 status={value.status}
               />
             )
-          })
+          }):
+          <div className='flex w-full h-full justify-center items-center poppins-semi-bold text-3xl'>
+            <p >Oops! No job applications to show!</p>
+          </div>
         }
       </div>
     </div>

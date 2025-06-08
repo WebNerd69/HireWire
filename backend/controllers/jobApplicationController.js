@@ -43,13 +43,19 @@ const applyForJob = async (req, res) => {
 // Get all job applications filtered by author (i.e., jobs posted by this author)
 const getJobApplicationsByAuthor = async (req, res) => {
     try {
-        const { authorId } = req.params; // authorId is the user id of the job poster
+        const  {partnerId } = req.params;
+        console.log(partnerId)
+        // 1. Find jobs created by the author
+        const jobs = await jobModel.find({ author: partnerId }).select('_id');
 
-        // Find all jobs by this author
-        const jobs = await jobModel.find({ author: authorId });
-        const jobIds = jobs.map(job => job._id.toString());
+        if (!jobs || jobs.length === 0) {
+            return res.status(404).json({ message: "No jobs found for this author", success: false });
+        }
 
-        // Find all applications for these jobs
+        // 2. Extract job IDs
+        const jobIds = jobs.map(job => job._id);
+
+        // 3. Find applications for those job IDs
         const applications = await jobApplicationModel.find({ jobId: { $in: jobIds } });
 
         res.status(200).json({ applications, success: true });

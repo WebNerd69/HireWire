@@ -170,7 +170,7 @@ const ProfileComponent = () => {
 
                     <button
                          onClick={handleSubmit}
-                         className='px-5 py-3 bg-gray-200 absolute rounded-full bottom-2 hover:bg-[#686df8] hover:text-white transition-colors duration-300'
+                         className='px-5 py-3 bg-gray-200 absolute rounded-full bottom-2 md:bottom-24 hover:bg-[#686df8] hover:text-white transition-colors duration-300'
                     >
                          Save changes
                     </button>

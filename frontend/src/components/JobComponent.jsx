@@ -62,8 +62,8 @@ const JobComponent = () => {
   return (
     <div className={isLoaded ? 'w-screen min-h-screen  bg-gray-50 px-10 py-24' : ""}>
       {isLoaded ? <>
-        <div className=' flex relative w-full md:items-start items-center justify-center md:flex-row flex-col'>
-          <div className='md:w-[50%] w-[95%] flex flex-col gap-y-10 '>
+        <div className=' flex relative w-full md:items-start items-center justify-center flex-col'>
+          <div className='md:w-[50%] w-[95%] flex flex-col gap-y-10 md:px-16'>
             <p className='md:text-5xl text-3xl poppins-semi-bold md:px-5 py-2 text-zinc-900' >{jobData.jobTitle}</p>
             <div className='flex items-center gap-x-20 text-sm text-gray-500 poppins-light'>
               <p>{jobData.companyName}</p>
@@ -98,7 +98,10 @@ const JobComponent = () => {
             </div>
 
           </div>
-          <div className='md:w-[50%] md:py-6 py-14'>
+          <div className='md:py-6 py-14'>
+            <div className=' w-screen flex justify-center items-center text-2xl py-20 poppins-semi-bold'>
+              <p>Your Resume</p>
+            </div>
             <ResumeComponent id={userData._id} />
           </div>
         </div>

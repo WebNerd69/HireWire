@@ -101,7 +101,7 @@ const ResumeComponent = ({ id }) => {
         onSubmit={handleSubmit}
       >
         {/* personal info */}
-        <div className='w-full px-10 py-10 rounded-xl border-2 relative flex flex-col justify-center gap-y-10'>
+        <div className='w-full md:w-[95%]  px-10 py-10 rounded-xl border-2 relative flex flex-col justify-center gap-y-10'>
           <p className='text-xl text-zinc-900 absolute -top-4 bg-gray-50 px-2 poppins-semi-bold'>Personal information</p>
           <div className='w-full flex md:items-center justify-between flex-col md:flex-row gap-y-3'>
             {/* First, Middle, Last Name */}
@@ -128,7 +128,7 @@ const ResumeComponent = ({ id }) => {
               { name: 'phone', placeholder: '+91-1234567890', type: 'text' },
               { name: 'email', placeholder: 'cooldude@gmail.com', type: 'email' },
             ].map((item, idx) => (
-              <div key={idx} className='px-5 py-5 border-2 md:w-[46% ] relative rounded-lg'>
+              <div key={idx} className='px-5 py-5 border-2 w-[46%] relative rounded-lg'>
                 <p className='text-sm text-zinc-900 absolute -top-3 bg-gray-50 px-2'>
                   {item.name.charAt(0).toUpperCase() + item.name.slice(1)}
                 </p>
@@ -146,7 +146,7 @@ const ResumeComponent = ({ id }) => {
         </div>
 
         {/* links */}
-        <div className='w-full px-10 py-10 rounded-xl border-2 relative flex flex-col justify-center gap-y-10'>
+        <div className='w-full md:w-[95%] px-10 py-10 rounded-xl border-2 relative flex flex-col justify-center gap-y-10'>
           <p className='text-xl text-zinc-900 absolute -top-4 bg-gray-50 px-2 poppins-semi-bold'>Links</p>
           <div className='w-full flex md:items-center justify-between md:flex-row flex-col gap-y-3'>
             {['linkedIn', 'gitHub', 'portfolio'].map((field, idx) => (
@@ -168,7 +168,7 @@ const ResumeComponent = ({ id }) => {
         </div>
 
         {/* Education */}
-        <div className='w-full px-10 py-10 rounded-xl border-2 relative flex flex-col justify-center gap-y-10'>
+        <div className='w-full px-10 py-10 md:w-[95%] rounded-xl border-2 relative flex flex-col justify-center gap-y-10'>
           <p className='text-xl text-zinc-900 absolute -top-4 bg-gray-50 px-2 poppins-semi-bold'>Education</p>
           <div className='w-full flex md:items-center justify-between flex-col md:flex-row gap-y-3'>
             <div className='px-5 py-5 border-2 md:w-[30%] relative rounded-lg'>
@@ -240,7 +240,7 @@ const ResumeComponent = ({ id }) => {
         </div>
 
         {/* Experiences */}
-        <div className='w-full px-10 py-10 rounded-xl border-2 relative flex flex-col justify-center gap-y-10'>
+        <div className='w-full px-10 py-10 md:w-[95%] rounded-xl border-2 relative flex flex-col justify-center gap-y-10'>
           <p className='text-xl text-zinc-900 absolute -top-4 bg-gray-50 px-2 poppins-semi-bold'>Experiences</p>
           <div className='w-full flex md:items-center justify-between flex-col md:flex-row gap-y-3'>
             <div className='px-5 py-5 border-2 md:w-[30%] relative rounded-lg'>
@@ -324,7 +324,7 @@ const ResumeComponent = ({ id }) => {
         </div>
 
         {/* projects */}
-        <div className='w-full px-10 py-10 rounded-xl border-2 relative flex flex-col justify-center gap-y-10'>
+        <div className='w-full md:w-[95%] px-10 py-10 rounded-xl border-2 relative flex flex-col justify-center gap-y-10'>
           <p className='text-xl text-zinc-900 absolute -top-4 bg-gray-50 px-2 poppins-semi-bold '>Projects</p>
           {/* project 1 */}
           <div className='w-full flex md:items-center justify-between flex-col md:flex-row gap-y-3'>
@@ -406,7 +406,7 @@ const ResumeComponent = ({ id }) => {
 
 
         {/* certificates */}
-        <div className='w-full px-10 py-10 rounded-xl border-2 relative flex flex-col justify-center gap-y-10'>
+        <div className='w-full md:w-[95%] px-10 py-10 rounded-xl border-2 relative flex flex-col justify-center gap-y-10'>
           <p className='text-xl text-zinc-900 absolute -top-4 bg-gray-50 px-2 poppins-semi-bold'>Certificates</p>
           {/* certificate 1 */}
           <div className='w-full flex md:items-center justify-between flex-col md:flex-row gap-y-3'>
@@ -498,22 +498,25 @@ const ResumeComponent = ({ id }) => {
         </div>
 
         {/* summary */}
-        <div className='px-5 py-5 border-2 w-[100%]  relative rounded-lg'>
+        <div className='px-5 py-5 border-2 w-[95%]  relative rounded-lg'>
           <p className='text-xl text-zinc-900 absolute -top-3 bg-gray-50 px-2 poppins-semi-bold'>Summary</p>
           <textarea
             name="summary"
             value={formData.summary}
             onChange={handleChange}
             placeholder='Resume summary'
-            className='bg-transparent w-full h-full outline-none resize-none'
+            className='bg-transparent w-full h-full outline-none resize-none '
           />
         </div>
+        <div className='w-full px-24 flex items-center justify-end'>
+
         <button
           type="submit"
-          className='my-5 hover:bg-[#686df8] bg-gray-300 hover:text-white text-zinc-500 px-6 py-2 rounded-full self-end'
+          className='my-5  hover:bg-[#686df8] bg-gray-300 hover:text-white text-zinc-500 px-6 py-2 rounded-full'
         >
           Update resume
         </button>
+        </div>
       </form>
     </div>
   );
