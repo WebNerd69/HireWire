@@ -14,15 +14,12 @@ const port = process.env.PORT || 5000
 app.use(express.json())
 
 const allowedOrigins = [
-    "https://hirewire-jqof.onrender.com", // your frontend
-    "http://localhost:5173"
+  "https://hirewire-jqof.onrender.com",
 ];
-
 app.use(cors({
-    origin: allowedOrigins,
-    credentials: true, // if you're using cookies or auth headers
+  origin: allowedOrigins,
+  credentials: true,
 }));
-
 
 // database and cloudinary connection
 connectDB()
