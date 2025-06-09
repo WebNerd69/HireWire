@@ -87,8 +87,7 @@ npm run dev
 ```bash
 cd frontend
 npm install
-# Create a .env file with:
-#VITE_BACKEND_URL ="http://localhost:5000"
+#Change the backendURL variable in AppContext to "http://localhost:5000"
 npm run dev
 ```
 
